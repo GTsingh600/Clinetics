@@ -1,5 +1,7 @@
 # Clinetics
 
+[![CI](https://github.com/GTsingh600/Clinetics/actions/workflows/ci.yml/badge.svg)](https://github.com/GTsingh600/Clinetics/actions/workflows/ci.yml)
+
 **AI-powered clinic operations.** Forecast appointment demand, generate optimal
 schedules with constrained optimization, and expose both through a tool-using LLM
 agent that answers natural-language operational questions and runs what-if
