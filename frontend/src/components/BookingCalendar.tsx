@@ -22,9 +22,23 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { ApiError, apiFetch, formatTime, type Doctor, type Slot, type Specialty } from "@/lib/api";
 import { Badge, Card, CardHeader } from "@/components/ui";
+import { toLocalISODate, todayISO } from "@/lib/date";
 
-function isoDate(d: Date): string {
-  return d.toISOString().slice(0, 10);
+/**
+ * Default to the next weekday, not simply tomorrow.
+ *
+ * Most doctors work Monday-Friday, so "tomorrow" lands on a day nobody is
+ * available roughly two days in seven, and the patient's first sight of the
+ * booking screen is an empty grid reading "this doctor does not work on ...".
+ * Opening on a day that plausibly has availability is a better starting guess;
+ * the user can still pick any date.
+ */
+function nextWeekday(): string {
+  const d = new Date();
+  do {
+    d.setDate(d.getDate() + 1);
+  } while (d.getDay() === 0 || d.getDay() === 6);
+  return toLocalISODate(d);
 }
 
 export function BookingCalendar({
@@ -39,7 +53,7 @@ export function BookingCalendar({
   const queryClient = useQueryClient();
   const [specialtyId, setSpecialtyId] = useState<number | null>(specialties[0]?.id ?? null);
   const [doctorId, setDoctorId] = useState<number | null>(null);
-  const [date, setDate] = useState(() => isoDate(new Date(Date.now() + 86_400_000)));
+  const [date, setDate] = useState(nextWeekday);
   const [selected, setSelected] = useState<string | null>(null);
   const [message, setMessage] = useState<{ tone: "ok" | "err"; text: string } | null>(null);
 
@@ -158,7 +172,7 @@ export function BookingCalendar({
           id="date"
           type="date"
           value={date}
-          min={isoDate(new Date())}
+          min={todayISO()}
           onChange={(e) => {
             setDate(e.target.value);
             setSelected(null);

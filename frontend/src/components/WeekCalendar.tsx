@@ -1,4 +1,5 @@
 import { Badge, EmptyState } from "@/components/ui";
+import { todayISO } from "@/lib/date";
 import {
   doctorName,
   formatTime,
@@ -39,7 +40,7 @@ export function WeekCalendar({
     list.sort((x, y) => x.start_time.localeCompare(y.start_time));
   }
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = todayISO();
 
   return (
     <div className="overflow-x-auto">

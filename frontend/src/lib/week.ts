@@ -1,5 +1,7 @@
 /** Monday-based week helpers, shared by the calendar pages. */
 
+import { toLocalISODate } from "@/lib/date";
+
 export function weekStart(from: Date = new Date()): Date {
   const d = new Date(from);
   // getDay() is Sunday-based (0=Sun); shift so Monday starts the week.
@@ -15,7 +17,8 @@ export function weekDays(offsetWeeks = 0): string[] {
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(start);
     d.setDate(d.getDate() + i);
-    return d.toISOString().slice(0, 10);
+    // Local calendar date, NOT toISOString(): see src/lib/date.ts.
+    return toLocalISODate(d);
   });
 }
 
