@@ -79,6 +79,10 @@ seed: ## Generate synthetic data (destructive: --reset truncates first)
 validate: ## THE VALIDATION GATE: prove the synthetic data has learnable structure
 	cd backend && $(UV) run python scripts/validate_data.py
 
+.PHONY: demo-users
+demo-users: ## Create one login per role, linked to the busiest seeded records
+	cd backend && $(UV) run python scripts/create_demo_users.py
+
 .PHONY: explain
 explain: ## EXPLAIN ANALYZE the (doctor_id, appointment_date) index, with/without
 	cd backend && $(UV) run python scripts/explain_index.py

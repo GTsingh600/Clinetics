@@ -113,6 +113,9 @@ jobs:
       - name: EXPLAIN ANALYZE the composite index
         run: uv run python scripts/explain_index.py
 
+      - name: Demo accounts script runs against seeded data
+        run: uv run python scripts/create_demo_users.py
+
   frontend:
     name: Frontend (lint, types, build)
     runs-on: ubuntu-latest

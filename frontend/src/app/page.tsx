@@ -1,6 +1,8 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import SystemStatus from "@/components/SystemStatus";
+import { currentUser, homeFor } from "@/lib/session";
 
-// Live backend status must be read per request, not baked in at build time.
 export const dynamic = "force-dynamic";
 
 const PHASES = [
@@ -15,39 +17,46 @@ const PHASES = [
   { n: 8, name: "Deploy", detail: "Managed Postgres, backend host, Vercel frontend" },
 ];
 
-const CURRENT_PHASE = 0;
+const CURRENT_PHASE = 2;
 
-export default function Home() {
+export default async function Home() {
+  // Signed-in users go straight to their dashboard; the marketing page is for
+  // people who are not logged in.
+  const user = await currentUser();
+  if (user) redirect(homeFor(user.role));
+
   return (
-    <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-16">
+    <main className="mx-auto w-full max-w-3xl px-lg py-xl">
       <h1 className="text-3xl font-bold tracking-tight">Clinetics</h1>
-      <p className="mt-2 text-slate-600 dark:text-slate-400">
-        Forecast demand → optimize schedules with CP-SAT → explain and simulate via a
-        tool-using agent. The LLM never makes scheduling decisions.
+      <p className="mt-2 text-secondary">
+        Forecast demand → optimize schedules with CP-SAT → explain and simulate via a tool-using
+        agent. The LLM never makes scheduling decisions.
       </p>
 
-      <div className="mt-8">
+      <div className="mt-lg flex gap-3">
+        <Link
+          href="/login"
+          className="rounded-card bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+        >
+          Sign in
+        </Link>
+      </div>
+
+      <div className="mt-lg">
         <SystemStatus />
       </div>
 
-      <h2 className="mt-10 text-sm font-semibold uppercase tracking-wide text-slate-500">
+      <h2 className="mt-xl text-sm font-semibold uppercase tracking-wide text-secondary">
         Build progress
       </h2>
-      <ol className="mt-3 space-y-1">
+      <ol className="mt-3 space-y-1 text-sm">
         {PHASES.map((p) => (
-          <li
-            key={p.n}
-            className={
-              p.n <= CURRENT_PHASE
-                ? "text-slate-900 dark:text-slate-100"
-                : "text-slate-400 dark:text-slate-600"
-            }
-          >
-            <span className="font-mono text-xs">
+          <li key={p.n} className={p.n <= CURRENT_PHASE ? "text-on-primary-container" : "text-outline"}>
+            <span className="tabular font-mono text-xs">
               [{p.n <= CURRENT_PHASE ? "x" : " "}] Phase {p.n}
             </span>{" "}
             <span className="font-medium">{p.name}</span>
-            <span className="text-slate-400 dark:text-slate-600"> — {p.detail}</span>
+            <span className="text-outline"> — {p.detail}</span>
           </li>
         ))}
       </ol>

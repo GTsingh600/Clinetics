@@ -10,8 +10,10 @@ so the repo doubles as a tutorial rather than just an artifact.
 |---|---|
 | [phase-0-scaffold.md](./phase-0-scaffold.md) | Repo layout, Docker Compose, Python packaging, FastAPI, SQLAlchemy, Alembic, Celery, Next.js App Router, CI |
 | [phase-1-database.md](./phase-1-database.md) | Normalization, the deliberate denormalization, CHECK/EXCLUDE constraints, ON DELETE, native ENUMs, generated columns, index measurement, the PL/pgSQL trigger, schema separation, synthetic data and the validation gate |
+| [phase-2-core-app.md](./phase-2-core-app.md) | Cookie vs bearer sessions, bcrypt's 72-byte limit, refresh rotation and reuse detection, CSRF, object-level authorization, the two booking races and their two different fixes, server components and cookies |
+| [design-system.md](./design-system.md) | Palette, typography, tokens, component patterns |
 | [glossary.md](./glossary.md) | Every term used in the project, defined in one line |
-| _phase-2-core-app.md_ | (next) Auth, 3-role RBAC, CRUD, calendar UI, concurrency-safe booking |
+| _phase-3-forecasting.md_ | (next) Feature engineering, no-show classifier, demand/duration models, eval harness |
 
 ## How the project fits together
 

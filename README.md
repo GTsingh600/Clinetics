@@ -30,8 +30,8 @@ Forecast  →  Optimize  →  Agent orchestrates & explains  →  Simulate "what
 |---|---|---|
 | **0 — Scaffold** | Repo, Docker Compose, FastAPI + Next.js skeletons, Alembic, CI | ✅ **Done & verified** |
 | **1 — Database** | Models, constraints, EXCLUDE, trigger, synthetic data + validation gate | ✅ **Done & verified** |
-| 2 — Core app | Auth + 3-role RBAC, CRUD, calendar UI, concurrency-safe booking | ⬜ Next |
-| 3 — Forecasting | No-show classifier, demand & duration models, eval harness | ⬜ |
+| **2 — Core app** | Auth + 3-role RBAC, CRUD, calendar UI, concurrency-safe booking | ✅ **Done & verified** |
+| 3 — Forecasting | No-show classifier, demand & duration models, eval harness | ⬜ Next |
 | 4 — Optimizer | CP-SAT model, greedy baseline, benchmark | ⬜ |
 | 5 — Agent | Tool schemas, tool-calling loop, grounded explanations | ⬜ |
 | 6 — Simulation | What-if endpoint, before/after diff UI | ⬜ |
@@ -152,6 +152,11 @@ why it was built that way, and the underlying concepts.
   denormalization, EXCLUDE constraints and why app-level checking cannot be
   correct, ON DELETE as design, generated columns, index measurement, the
   PL/pgSQL trigger, synthetic data and the validation gate
+- [Phase 2 — Core app](./docs/phase-2-core-app.md) — cookie vs bearer sessions,
+  bcrypt's 72-byte limit, refresh rotation and reuse detection, CSRF without a
+  double-submit token, object-level authorization, **the two booking races and
+  why they need different fixes**, server components and the cookie problem
+- [Design system](./docs/design-system.md) — palette, typography, tokens
 - [Glossary](./docs/glossary.md) — every term in the project, defined
 
 ---
@@ -181,9 +186,10 @@ PostgreSQL rather than in application code:
   `upgrade head` verified), with `alembic check` clean.
 
 ```bash
-make seed       # generate synthetic data
-make validate   # THE GATE - fails if the data lacks learnable structure
-make explain    # EXPLAIN ANALYZE the composite index, with and without
+make seed         # generate synthetic data
+make validate     # THE GATE - fails if the data lacks learnable structure
+make explain      # EXPLAIN ANALYZE the composite index, with and without
+make demo-users   # one login per role, linked to the busiest seeded records
 ```
 
 ### Synthetic data
@@ -210,6 +216,65 @@ structure. All parameters are documented in the generator's docstring.
 | Index (36,817 rows) | **16.7× faster**; Seq Scan → Bitmap Index Scan |
 
 ![No-show rate vs lead time](./backend/reports/no_show_vs_lead_time.png)
+
+---
+
+## Application (Phase 2)
+
+Three roles — `patient`, `doctor`, `admin` — with a session model chosen for what
+it exposes you to rather than for convenience.
+
+**Sessions are httpOnly cookies**, never a token in a response body, so page
+JavaScript cannot read one. A `Authorization: Bearer` fallback is deliberately
+refused: it would reintroduce the XSS exposure the cookie exists to prevent.
+A short access token (30 min) pairs with a rotating refresh token; replaying an
+already-rotated token revokes the **entire token family**, because by then an
+attacker may hold a newer token in the same chain.
+
+**CSRF is handled by origin checking**, not a double-submit token — a
+double-submit token must be readable by JavaScript to be echoed back, and an XSS
+that can read it can forge requests anyway. The `Origin` header cannot be set by
+page script at all.
+
+**Authorization is object-level where roles are not enough.** Both Alice and Bob
+hold the `patient` role, so a role check alone would let either read the other;
+patient access is checked against the record, and "not yours" returns 404 rather
+than 403 so ids cannot be probed. List queries are scoped in the SQL, not
+filtered after loading.
+
+### The concurrency work
+
+There are **two** races on the booking path, and the interesting finding is that
+the obvious one is already solved:
+
+| Race | Why | Fix |
+|---|---|---|
+| Same doctor, same slot | Phase 1's `EXCLUDE` constraint makes the corrupt state unrepresentable | Nothing needed for correctness — the app just has to return a clean **409**, not a 500 |
+| **Room capacity** | "At most N overlapping appointments in this room" is a property of a *set* of rows, so no CHECK or EXCLUDE can express it. A real lost update. | **`SELECT ... FOR UPDATE`** on the room row, used as a mutex keyed on the room |
+
+The test suite demonstrates both halves of the requirement:
+
+```
+test_room_capacity_race_WITHOUT_lock_reproduces_overbooking  PASSED  ← the bug
+test_room_capacity_race_WITH_lock_holds_the_limit            PASSED  ← the fix
+test_locks_on_different_rooms_do_not_serialise               PASSED  ← not over-locked
+```
+
+Interleaving is forced with `asyncio.Barrier` rather than left to timing, and the
+tests run on genuinely separate, committing connections — two sessions sharing
+one connection cannot contend for a lock, which would make every assertion a
+tautology.
+
+### Frontend
+
+Next.js App Router, server components by default. Only five components are
+client-side: the query provider, login form, logout button, booking calendar, and
+the charts. Everything else — shell, navigation, all three dashboards, the week
+calendar — ships zero JavaScript.
+
+Design tokens from [docs/design-system.md](./docs/design-system.md) are wired
+into Tailwind v4's `@theme`, so components reference `bg-primary` and
+`rounded-card` rather than hex values.
 
 ---
 
