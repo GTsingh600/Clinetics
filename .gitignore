@@ -31,7 +31,10 @@ data/
 *.pkl
 *.joblib
 backend/artifacts/
-backend/reports/*.png
+# Validation-gate plots ARE committed: they are the visual evidence that the
+# synthetic data contains the correlations the generator claims. A reader
+# should be able to check that claim without running anything.
+!backend/reports/*.png
 
 # --- Editors / OS ---
 .vscode/

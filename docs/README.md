@@ -9,8 +9,9 @@ so the repo doubles as a tutorial rather than just an artifact.
 | Doc | Covers |
 |---|---|
 | [phase-0-scaffold.md](./phase-0-scaffold.md) | Repo layout, Docker Compose, Python packaging, FastAPI, SQLAlchemy, Alembic, Celery, Next.js App Router, CI |
+| [phase-1-database.md](./phase-1-database.md) | Normalization, the deliberate denormalization, CHECK/EXCLUDE constraints, ON DELETE, native ENUMs, generated columns, index measurement, the PL/pgSQL trigger, schema separation, synthetic data and the validation gate |
 | [glossary.md](./glossary.md) | Every term used in the project, defined in one line |
-| _phase-1-database.md_ | (next) Normalization, constraints, EXCLUDE, triggers, indexes, synthetic data |
+| _phase-2-core-app.md_ | (next) Auth, 3-role RBAC, CRUD, calendar UI, concurrency-safe booking |
 
 ## How the project fits together
 

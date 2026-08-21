@@ -100,7 +100,7 @@ disallow_untyped_defs = true
 no_implicit_optional = true
 # Third-party libs without stubs; tighten as the project grows.
 [[tool.mypy.overrides]]
-module = ["celery.*", "jose.*", "passlib.*", "ortools.*", "lightgbm.*", "xgboost.*", "sklearn.*", "matplotlib.*", "faker.*"]
+module = ["celery.*", "jose.*", "passlib.*", "ortools.*", "lightgbm.*", "xgboost.*", "sklearn.*", "matplotlib.*", "faker.*", "pandas.*", "scipy.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
@@ -110,6 +110,9 @@ ignore_errors = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 asyncio_mode = "auto"
+# Every async fixture shares the test's own loop. Async DB fixtures are
+# function-scoped precisely so this stays true; see tests/conftest.py.
+asyncio_default_fixture_loop_scope = "function"
 addopts = "-ra --strict-markers"
 markers = [
     "integration: requires a live Postgres/Redis (skipped by default in unit runs)",

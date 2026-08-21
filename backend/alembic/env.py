@@ -33,6 +33,17 @@ if config.config_file_name is not None:
 
 target_metadata = Base.metadata
 
+# Schemas this project owns. Anything else the database happens to contain
+# (extensions' own tables, for instance) must be invisible to autogenerate,
+# otherwise it proposes dropping objects we never created.
+OWNED_SCHEMAS = {None, "public", "analytics"}
+
+
+def _include_object(obj, name, type_, reflected, compare_to) -> bool:
+    if type_ == "table":
+        return obj.schema in OWNED_SCHEMAS
+    return True
+
 
 def run_migrations_offline() -> None:
     """Emit SQL to stdout without connecting — useful for reviewing a migration
@@ -67,7 +78,10 @@ def run_migrations_online() -> None:
             target_metadata=target_metadata,
             compare_type=True,  # detect column type changes
             compare_server_default=True,  # detect DEFAULT changes
-            include_schemas=False,
+            # Analytical tables live in the `analytics` schema, so autogenerate
+            # must look beyond `public` or it would propose dropping them.
+            include_schemas=True,
+            include_object=_include_object,
         )
         with context.begin_transaction():
             context.run_migrations()

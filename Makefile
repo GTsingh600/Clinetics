@@ -69,6 +69,20 @@ revision: ## Autogenerate a migration: make revision m="add doctor table"
 downgrade: ## Roll back one migration
 	cd backend && .venv/Scripts/python -m alembic downgrade -1
 
+# --- Data ------------------------------------------------------------------
+
+.PHONY: seed
+seed: ## Generate synthetic data (destructive: --reset truncates first)
+	cd backend && $(UV) run python scripts/generate_data.py --reset --months 36 --doctors 16 --patients 4000
+
+.PHONY: validate
+validate: ## THE VALIDATION GATE: prove the synthetic data has learnable structure
+	cd backend && $(UV) run python scripts/validate_data.py
+
+.PHONY: explain
+explain: ## EXPLAIN ANALYZE the (doctor_id, appointment_date) index, with/without
+	cd backend && $(UV) run python scripts/explain_index.py
+
 .PHONY: test
 test: ## Run backend tests
 	cd backend && .venv/Scripts/python -m pytest

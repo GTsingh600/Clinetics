@@ -29,8 +29,8 @@ Forecast  →  Optimize  →  Agent orchestrates & explains  →  Simulate "what
 | Phase | Scope | State |
 |---|---|---|
 | **0 — Scaffold** | Repo, Docker Compose, FastAPI + Next.js skeletons, Alembic, CI | ✅ **Done & verified** |
-| 1 — Database | Models, constraints, EXCLUDE, trigger, synthetic data + validation gate | ⬜ Next |
-| 2 — Core app | Auth + 3-role RBAC, CRUD, calendar UI, concurrency-safe booking | ⬜ |
+| **1 — Database** | Models, constraints, EXCLUDE, trigger, synthetic data + validation gate | ✅ **Done & verified** |
+| 2 — Core app | Auth + 3-role RBAC, CRUD, calendar UI, concurrency-safe booking | ⬜ Next |
 | 3 — Forecasting | No-show classifier, demand & duration models, eval harness | ⬜ |
 | 4 — Optimizer | CP-SAT model, greedy baseline, benchmark | ⬜ |
 | 5 — Agent | Tool schemas, tool-calling loop, grounded explanations | ⬜ |
@@ -148,7 +148,68 @@ why it was built that way, and the underlying concepts.
 
 - [Phase 0 — Scaffold](./docs/phase-0-scaffold.md) — Docker, packaging, ASGI,
   SQLAlchemy sessions, Alembic, Celery, RSC, CI gates
+- [Phase 1 — Database](./docs/phase-1-database.md) — normalization, the deliberate
+  denormalization, EXCLUDE constraints and why app-level checking cannot be
+  correct, ON DELETE as design, generated columns, index measurement, the
+  PL/pgSQL trigger, synthetic data and the validation gate
 - [Glossary](./docs/glossary.md) — every term in the project, defined
+
+---
+
+## Database (Phase 1)
+
+The schema is the graded core of this project, so the rules that matter live in
+PostgreSQL rather than in application code:
+
+- **A double-booked doctor is unrepresentable.** A `btree_gist` `EXCLUDE`
+  constraint rejects overlapping appointments at write time, closing the
+  time-of-check/time-of-use race that no amount of careful application code can
+  fix. Half-open `'[)'` bounds keep back-to-back slots legal; a partial
+  `WHERE (status <> 'cancelled')` clause stops a cancellation burning the slot.
+- **19 CHECK constraints, 20 foreign keys, zero left as default `NO ACTION`** —
+  `RESTRICT` where clinical history must survive, `CASCADE` where a child row is
+  meaningless alone, `SET NULL` where a reference can be lost but the row cannot.
+- **One PL/pgSQL trigger** maintains a per-doctor/per-day utilisation summary in
+  O(1) per write, correctly handling the case naive implementations break on: an
+  UPDATE that moves an appointment to another doctor or date must decrement one
+  cell and increment another.
+- **One deliberate, documented denormalization**: the doctor's specialty snapshotted
+  onto `Appointment` at booking time.
+- **Analytical tables live in a separate `analytics` schema**, so derived output
+  is distinguishable from source-of-truth in the database itself.
+- **6 migrations, each one concern**, fully reversible (`downgrade base` →
+  `upgrade head` verified), with `alembic check` clean.
+
+```bash
+make seed       # generate synthetic data
+make validate   # THE GATE - fails if the data lacks learnable structure
+make explain    # EXPLAIN ANALYZE the composite index, with and without
+```
+
+### Synthetic data
+
+> ⚠️ Synthetic, and openly so. The value is that it contains **deliberately
+> learnable structure** — a model trained on noise would report metrics that
+> mean nothing.
+
+No-show probability comes from a logistic model over lead time, day of week,
+hour, urgency, new-patient status, and a per-patient latent propensity (so a
+patient's own history genuinely predicts their future). Demand is Poisson with
+weekday/weekend, Monday-peak, seasonal, and **specialty-specific intra-day**
+structure. All parameters are documented in the generator's docstring.
+
+`scripts/validate_data.py` then proves it, on 36,817 appointments:
+
+| Property | Measured |
+|---|---|
+| No-show vs lead time | **5.4% → 40.2%** (7.5×), Spearman rho=+0.21, buckets monotonic (rho=+1.00) |
+| Patient behaviour persists | rho=+0.25 across 3,162 patients' split histories |
+| Weekday vs weekend demand | 36.8/day vs 9.5/day |
+| Dermatology peak hour | **17:00** (vs general practice 09:00) |
+| New-patient duration | +7.6 to +8.3 min in every specialty |
+| Index (36,817 rows) | **16.7× faster**; Seq Scan → Bitmap Index Scan |
+
+![No-show rate vs lead time](./backend/reports/no_show_vs_lead_time.png)
 
 ---
 

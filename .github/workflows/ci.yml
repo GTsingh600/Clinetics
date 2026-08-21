@@ -98,6 +98,21 @@ jobs:
       - name: Pytest
         run: uv run pytest --cov=app --cov=forecasting --cov=optimizer --cov-report=term-missing
 
+      # Runs AFTER pytest: the generator writes committed rows, while the
+      # integration tests assume a database they can fill and roll back.
+      # `--reset` truncates first, so the two never see each other's data.
+      - name: Generate synthetic data
+        run: uv run python scripts/generate_data.py --reset --months 12 --doctors 8 --patients 600
+
+      - name: Synthetic data validation gate
+        # Phase 1's headline claim is that the data contains genuinely learnable
+        # structure. This asserts it on every push rather than trusting a
+        # screenshot: it exits non-zero if the correlations are not measurable.
+        run: uv run python scripts/validate_data.py
+
+      - name: EXPLAIN ANALYZE the composite index
+        run: uv run python scripts/explain_index.py
+
   frontend:
     name: Frontend (lint, types, build)
     runs-on: ubuntu-latest
