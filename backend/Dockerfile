@@ -19,12 +19,19 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 WORKDIR /app
 
-# Copy only the manifest first so the dependency layer is cached and does not
-# rebuild on every source edit.
-COPY pyproject.toml ./
-RUN uv pip install --system ".[ml]"
+# Copy only the manifests first so the dependency layer is cached and does not
+# rebuild on every source edit. `--frozen` installs exactly what uv.lock pins,
+# so the image, CI, and a developer machine all get identical versions.
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --extra ml --no-dev --no-install-project
 
 COPY . .
+
+# Install the project itself now that its source is present.
+RUN uv sync --frozen --extra ml --no-dev
+
+# Put the venv first on PATH so `uvicorn`/`celery` resolve without `uv run`.
+ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8000
 

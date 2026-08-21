@@ -41,9 +41,13 @@ psql: ## Open a psql shell on the dev database
 # --- Backend ----------------------------------------------------------------
 
 .PHONY: install
-install: ## Install backend + frontend dependencies
-	cd backend && $(UV) venv --python 3.12 && $(UV) pip install -e ".[ml]" --group dev
+install: ## Install backend + frontend dependencies (exact locked versions)
+	cd backend && $(UV) sync --extra ml --group dev --frozen
 	cd frontend && npm install
+
+.PHONY: lock
+lock: ## Re-resolve uv.lock after changing pyproject dependencies
+	cd backend && $(UV) lock
 
 .PHONY: api
 api: ## Run the API with hot reload

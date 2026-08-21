@@ -65,34 +65,38 @@ jobs:
         uses: astral-sh/setup-uv@v3
         with:
           enable-cache: true
+          cache-dependency-glob: backend/uv.lock
 
       - name: Set up Python
         run: uv python install ${{ env.PYTHON_VERSION }}
 
-      - name: Install dependencies
-        run: uv pip install --system -e ".[ml]" --group dev
+      - name: Install dependencies (locked)
+        # --frozen installs exactly what uv.lock pins and fails if the lockfile
+        # is out of date with pyproject.toml. CI must never silently resolve
+        # different versions than a developer has locally.
+        run: uv sync --extra ml --group dev --frozen
 
       - name: Ruff (lint)
-        run: ruff check .
+        run: uv run ruff check .
 
       - name: Black (format check)
-        run: black --check .
+        run: uv run black --check .
 
       - name: Mypy (types)
-        run: mypy app forecasting optimizer scripts
+        run: uv run mypy app forecasting optimizer scripts
 
       - name: Architecture purity (optimizer/forecasting stay pure)
-        run: python scripts/check_purity.py
+        run: uv run python scripts/check_purity.py
 
       - name: Alembic migrations apply cleanly
-        run: alembic upgrade head
+        run: uv run alembic upgrade head
 
       - name: Alembic has no un-migrated model drift
         # Fails if a model was changed without generating a migration.
-        run: alembic check
+        run: uv run alembic check
 
       - name: Pytest
-        run: pytest --cov=app --cov=forecasting --cov=optimizer --cov-report=term-missing
+        run: uv run pytest --cov=app --cov=forecasting --cov=optimizer --cov-report=term-missing
 
   frontend:
     name: Frontend (lint, types, build)
@@ -114,6 +118,12 @@ jobs:
 
       - name: ESLint
         run: npm run lint
+
+      - name: Generate Next.js route types
+        # Next 16 generates global types (LayoutProps, PageProps) into .next/types.
+        # That directory is gitignored, so on a clean checkout `tsc` fails with
+        # "Cannot find name 'LayoutProps'" until typegen has run.
+        run: npx next typegen
 
       - name: TypeScript
         run: npx tsc --noEmit

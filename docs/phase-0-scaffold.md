@@ -235,8 +235,22 @@ the project you are actively developing.
 ### Concept: why `uv`
 
 `uv` is a Rust-based replacement for pip/venv — typically 10–100× faster, with a
-real resolver. It is a drop-in: `uv pip install` takes the same arguments. Nothing
-in the project depends on it; plain pip works identically.
+real resolver.
+
+### Concept: the lockfile
+
+`pyproject.toml` states *constraints* (`fastapi>=0.115`). `uv.lock` records the
+*exact* version of all 131 resolved packages, transitive dependencies included.
+
+Why it matters: without a lock, `>=0.115` means CI installs whatever is newest on
+the day it runs. A dependency ships a regression and your build breaks with no
+change on your side — and worse, your laptop and production silently run different
+code. `uv sync --frozen` installs exactly what the lock pins and *fails* if the
+lock is stale relative to `pyproject.toml`.
+
+The lock is committed and used in all three places — local, CI, and the Docker
+image — so all three are provably identical. Change a dependency → run
+`uv lock` (`make lock`) → commit the updated lock.
 
 ### The build-system problem we hit
 
@@ -748,6 +762,40 @@ cors_origins: Annotated[list[str], NoDecode] = Field(...)
 3. **This is exactly what Phase 0 is for.** Found in an empty scaffold it cost ten
    minutes. Found in Phase 4 on top of a stack of migrations, it costs an afternoon.
 
+### Two more bugs that only CI could find
+
+Everything passed locally, then the first CI run failed twice over. Both failures
+share one root cause worth internalizing: **your machine is dirty and CI is clean.**
+Your working directory accumulates generated files that a fresh checkout does not have.
+
+**Failure 1 — `Cannot find name 'LayoutProps'`.** Next.js 16 *generates* global
+types (`LayoutProps`, `PageProps`) into `.next/types` during a build. That directory
+is gitignored, so on a clean checkout `tsc --noEmit` ran before anything generated
+them. It passed locally purely because we had already run `npm run build`.
+
+Reproduced it with `rm -rf .next && npx tsc --noEmit`, then fixed it by running the
+sanctioned generator first:
+
+```yaml
+- name: Generate Next.js route types
+  run: npx next typegen
+- name: TypeScript
+  run: npx tsc --noEmit
+```
+
+**Failure 2 — `No file matched [**/uv.lock]`.** The `setup-uv` cache step needs a
+lockfile, and we had none because `uv pip install` does not write one.
+
+The lazy fix was to point the cache glob at `pyproject.toml`. We took the better
+one: generate a real `uv.lock`, commit it, and switch CI and Docker to
+`uv sync --frozen`. A CI complaint surfaced a genuine reproducibility gap — worth
+fixing properly rather than silencing.
+
+**The general lesson:** a green local run proves your code works *given your
+machine's accumulated state*. Only a clean checkout proves it works at all. If you
+want to check something before pushing, delete the generated directories first —
+`.next/`, `.venv/`, `__pycache__/` — and try again.
+
 ---
 
 ## 14. Verification log
@@ -775,6 +823,12 @@ Phase 0 is not "done" because files exist. Every claim below was executed:
 | `npx tsc --noEmit` | clean |
 | `npm run lint` | clean |
 | `npm run build` | success, `/` correctly **dynamic** |
+| `npx next typegen` on a clean `.next/` | route types generated, `tsc` clean |
+| `uv lock` | 131 packages pinned |
+| `docker build ./backend` | image built from the lockfile |
+| Container run + `GET /api/v1/health/ready` | reached Postgres, returned `ready` |
+| Container `HEALTHCHECK` | reports **healthy** |
+| GitHub Actions | see the badge/run list on the repo |
 
 Confirming `btree_gist` and `plpgsql` *now* matters: both are hard requirements of
 the Phase 1 schema. Discovering a missing extension while writing migrations would
