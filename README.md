@@ -53,12 +53,11 @@ cp .env.example .env          # fill in ANTHROPIC_API_KEY when you reach Phase 5
 docker compose up -d          # Postgres 16 + Redis 7
 docker compose ps             # both should report "healthy"
 
-# 2. Backend
+# 2. Backend  (uv sync installs the exact versions pinned in uv.lock)
 cd backend
-uv venv --python 3.12         # or: python -m venv .venv
-uv pip install -e ".[ml]" --group dev
-.venv/Scripts/python -m alembic upgrade head
-.venv/Scripts/python -m uvicorn app.main:app --reload
+uv sync --extra ml --group dev --frozen
+uv run alembic upgrade head
+uv run uvicorn app.main:app --reload
 #   → http://localhost:8000/api/v1/health
 #   → http://localhost:8000/docs
 
@@ -68,8 +67,11 @@ npm install
 npm run dev                   # → http://localhost:3000
 ```
 
-On Linux/macOS/WSL replace `.venv/Scripts/python` with `.venv/bin/python`, or just
-use `make` (`make up`, `make api`, `make web`, `make test`, `make check`).
+`uv run` works identically on every OS. If you prefer `make`: `make up`,
+`make install`, `make api`, `make web`, `make test`, `make check`.
+
+Changed a dependency in `pyproject.toml`? Run `make lock` (`uv lock`) and commit
+the updated `uv.lock` — CI installs with `--frozen` and will fail on a stale lock.
 
 ---
 
