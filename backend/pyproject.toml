@@ -13,7 +13,8 @@ requires-python = ">=3.12,<3.13"
 dependencies = [
     "fastapi>=0.115",
     "uvicorn[standard]>=0.32",
-    "pydantic>=2.9",
+    # [email] pulls in email-validator, needed for Pydantic's EmailStr.
+    "pydantic[email]>=2.9",
     "pydantic-settings>=2.6",
     "sqlalchemy[asyncio]>=2.0.36",
     "alembic>=1.14",
@@ -22,7 +23,10 @@ dependencies = [
     "celery>=5.4",
     "redis>=5.2",
     "python-jose[cryptography]>=3.3",  # JWT (Phase 2 auth)
-    "passlib[bcrypt]>=1.7.4",         # password hashing (Phase 2 auth)
+    # bcrypt directly, NOT passlib: passlib is unmaintained and reads
+    # `bcrypt.__about__`, removed in bcrypt 4.1, so it fails against bcrypt 5.
+    # See app/core/security.py.
+    "bcrypt>=4.2",
     "anthropic>=0.40",                # agent tool-calling (Phase 5)
 ]
 
@@ -100,7 +104,7 @@ disallow_untyped_defs = true
 no_implicit_optional = true
 # Third-party libs without stubs; tighten as the project grows.
 [[tool.mypy.overrides]]
-module = ["celery.*", "jose.*", "passlib.*", "ortools.*", "lightgbm.*", "xgboost.*", "sklearn.*", "matplotlib.*", "faker.*", "pandas.*", "scipy.*"]
+module = ["celery.*", "jose.*", "bcrypt.*", "ortools.*", "lightgbm.*", "xgboost.*", "sklearn.*", "matplotlib.*", "faker.*", "pandas.*", "scipy.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

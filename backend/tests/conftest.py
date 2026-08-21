@@ -170,3 +170,42 @@ async def db(db_conn: AsyncConnection) -> AsyncGenerator[AsyncSession, None]:
         join_transaction_mode="create_savepoint",
     ) as session:
         yield session
+
+
+# --------------------------------------------------------------------------
+# Concurrency fixtures
+# --------------------------------------------------------------------------
+@pytest.fixture
+async def committing_sessions(_migrated_database: str):
+    """Independent sessions that really COMMIT, for concurrency tests.
+
+    The `db` fixture above wraps everything in one transaction and rolls back,
+    which is perfect for constraint tests and useless for race tests: two
+    "transactions" sharing one connection cannot contend for a lock, and a
+    rollback would hide the very commit whose visibility is under test.
+
+    So this yields a factory producing sessions on separate connections, and
+    truncates afterwards because there is no rollback to clean up.
+    """
+    engine = create_async_engine(_migrated_database, poolclass=NullPool)
+    sessions: list[AsyncSession] = []
+
+    def _make() -> AsyncSession:
+        session = AsyncSession(bind=engine, expire_on_commit=False)
+        sessions.append(session)
+        return session
+
+    try:
+        yield _make
+    finally:
+        for session in sessions:
+            await session.close()
+        async with engine.begin() as conn:
+            await conn.execute(
+                sa_text(
+                    "TRUNCATE analytics.doctor_utilization, appointment, availability, "
+                    "doctor_specialty, room, doctor, patient, specialty, clinic, "
+                    "refresh_token, user_account RESTART IDENTITY CASCADE"
+                )
+            )
+        await engine.dispose()

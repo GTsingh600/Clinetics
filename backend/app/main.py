@@ -15,6 +15,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_router
 from app.core.config import settings
+from app.core.csrf import CSRFMiddleware
 from app.core.db import engine
 
 logging.basicConfig(
@@ -46,9 +47,16 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
+    # Middleware runs in reverse registration order, so CSRF is added first and
+    # therefore runs *after* CORS. That ordering matters: a rejected
+    # cross-origin request must still carry CORS headers, or the browser reports
+    # an opaque network error instead of the 403 the server actually sent.
+    app.add_middleware(CSRFMiddleware, allowed_origins=settings.cors_origins)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
+        # Required for cookie auth: without it the browser neither sends the
+        # session cookie cross-origin nor stores the one we set.
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

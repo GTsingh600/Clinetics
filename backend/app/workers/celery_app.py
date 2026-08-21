@@ -7,6 +7,7 @@ Phase 4 (long-running optimizer solves).
 from __future__ import annotations
 
 from celery import Celery
+from celery.schedules import crontab
 
 from app.core.config import settings
 
@@ -14,7 +15,7 @@ celery_app = Celery(
     "clinetics",
     broker=settings.celery_broker_url,
     backend=settings.celery_result_backend,
-    include=[],  # task modules get registered here as they are added
+    include=["app.workers.tasks.reconcile"],
 )
 
 celery_app.conf.update(
@@ -30,6 +31,17 @@ celery_app.conf.update(
     task_soft_time_limit=540,
     worker_prefetch_multiplier=1,  # fair dispatch for uneven task durations
 )
+
+
+# Periodic schedule, run by `celery beat`. Nightly at 02:30 UTC: after the
+# clinic day is over, so the recount is not racing live writes.
+celery_app.conf.beat_schedule = {
+    "reconcile-utilization-nightly": {
+        "task": "clinetics.reconcile_utilization",
+        "schedule": crontab(hour=2, minute=30),
+        "kwargs": {"days": 30, "dry_run": True},
+    },
+}
 
 
 @celery_app.task(name="clinetics.ping")

@@ -46,8 +46,15 @@ class Settings(BaseSettings):
 
     # --- Security (used from Phase 2) ---
     secret_key: str = "dev-only-insecure-key"
-    access_token_expire_minutes: int = 60
+    access_token_expire_minutes: int = 30
+    refresh_token_expire_days: int = 7
     algorithm: str = "HS256"
+    # Cookie settings. `secure` must be True in production (HTTPS only); it is
+    # relaxed locally because dev runs over plain HTTP.
+    cookie_secure: bool = False
+    cookie_domain: str | None = None
+    access_cookie_name: str = "clinetics_access"
+    refresh_cookie_name: str = "clinetics_refresh"
 
     # --- CORS ---
     # `NoDecode` is required: without it pydantic-settings tries to JSON-decode

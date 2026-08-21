@@ -27,6 +27,7 @@ from app.models.enums import (
     Weekday,
 )
 from app.models.patient import Patient
+from app.models.refresh_token import RefreshToken
 from app.models.room import Room
 from app.models.specialty import Specialty
 from app.models.user import User
@@ -43,6 +44,7 @@ __all__ = [
     "DoctorUtilization",
     "Forecast",
     "Patient",
+    "RefreshToken",
     "Room",
     "Schedule",
     "ScheduleEntry",
