@@ -1,0 +1,18 @@
+# Normalize line endings: LF in the repository, native in the working tree.
+# Without this, a Windows checkout commits CRLF and every diff on Linux/CI is noise.
+* text=auto eol=lf
+
+# Files that MUST stay LF or they break inside Linux containers.
+*.sh        text eol=lf
+Dockerfile  text eol=lf
+Makefile    text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+
+# Binary — never touch.
+*.png binary
+*.jpg binary
+*.ico binary
+*.pdf binary
+*.parquet binary
+*.pkl binary

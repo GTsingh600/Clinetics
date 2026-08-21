@@ -1,0 +1,103 @@
+# Local dev infrastructure for Clinetics.
+#
+#   docker compose up -d            -> Postgres + Redis only (default)
+#   docker compose --profile app up -> also builds/runs API, Celery worker, frontend
+#
+# Rationale: day-to-day you want the API running on the host with hot reload
+# (uvicorn --reload) while only stateful services live in containers. The `app`
+# profile exists so CI and a demo machine can bring the whole stack up in one command.
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: clinetics-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-clinetics}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-clinetics_dev_pw}
+      POSTGRES_DB: ${POSTGRES_DB:-clinetics}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # `pg_isready` alone returns true before the DB accepts real queries during
+      # first-boot initdb, so we probe with an actual query.
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-clinetics} -d ${POSTGRES_DB:-clinetics} && psql -U ${POSTGRES_USER:-clinetics} -d ${POSTGRES_DB:-clinetics} -c 'SELECT 1' -q"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: clinetics-redis
+    # appendonly keeps Celery results across a restart; dev convenience only.
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    profiles: ["app"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: clinetics-api
+    env_file: [.env]
+    environment:
+      # Inside the compose network, hostnames are service names, not localhost.
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-clinetics}:${POSTGRES_PASSWORD:-clinetics_dev_pw}@db:5432/${POSTGRES_DB:-clinetics}
+      DATABASE_URL_SYNC: postgresql+psycopg://${POSTGRES_USER:-clinetics}:${POSTGRES_PASSWORD:-clinetics_dev_pw}@db:5432/${POSTGRES_DB:-clinetics}
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    ports:
+      - "8000:8000"
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    volumes:
+      - ./backend:/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  worker:
+    profiles: ["app"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: clinetics-worker
+    env_file: [.env]
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-clinetics}:${POSTGRES_PASSWORD:-clinetics_dev_pw}@db:5432/${POSTGRES_DB:-clinetics}
+      DATABASE_URL_SYNC: postgresql+psycopg://${POSTGRES_USER:-clinetics}:${POSTGRES_PASSWORD:-clinetics_dev_pw}@db:5432/${POSTGRES_DB:-clinetics}
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    volumes:
+      - ./backend:/app
+    command: ["celery", "-A", "app.workers.celery_app.celery_app", "worker", "--loglevel=info", "--pool=solo"]
+
+  web:
+    profiles: ["app"]
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: clinetics-web
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  redisdata:

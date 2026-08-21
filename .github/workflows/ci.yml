@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.12"
+  NODE_VERSION: "22"
+
+jobs:
+  backend:
+    name: Backend (lint, types, tests)
+    runs-on: ubuntu-latest
+
+    # A real Postgres 16, not SQLite. The schema depends on Postgres-specific
+    # features (btree_gist EXCLUDE constraints, PL/pgSQL triggers) that no other
+    # engine emulates, so testing against anything else would be testing a
+    # different database than the one we ship.
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: clinetics
+          POSTGRES_PASSWORD: clinetics_ci_pw
+          POSTGRES_DB: clinetics_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U clinetics -d clinetics_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+
+    env:
+      ENVIRONMENT: ci
+      DATABASE_URL: postgresql+asyncpg://clinetics:clinetics_ci_pw@localhost:5432/clinetics_test
+      DATABASE_URL_SYNC: postgresql+psycopg://clinetics:clinetics_ci_pw@localhost:5432/clinetics_test
+      REDIS_URL: redis://localhost:6379/0
+      CELERY_BROKER_URL: redis://localhost:6379/1
+      CELERY_RESULT_BACKEND: redis://localhost:6379/2
+      SECRET_KEY: ci-only-not-a-real-secret
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: uv pip install --system -e ".[ml]" --group dev
+
+      - name: Ruff (lint)
+        run: ruff check .
+
+      - name: Black (format check)
+        run: black --check .
+
+      - name: Mypy (types)
+        run: mypy app forecasting optimizer scripts
+
+      - name: Architecture purity (optimizer/forecasting stay pure)
+        run: python scripts/check_purity.py
+
+      - name: Alembic migrations apply cleanly
+        run: alembic upgrade head
+
+      - name: Alembic has no un-migrated model drift
+        # Fails if a model was changed without generating a migration.
+        run: alembic check
+
+      - name: Pytest
+        run: pytest --cov=app --cov=forecasting --cov=optimizer --cov-report=term-missing
+
+  frontend:
+    name: Frontend (lint, types, build)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: ESLint
+        run: npm run lint
+
+      - name: TypeScript
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+
+  docker:
+    name: Docker images build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate compose file
+        run: docker compose config --quiet
+      - name: Build backend image
+        run: docker build -t clinetics-api:ci ./backend
+      - name: Build frontend image
+        run: docker build -t clinetics-web:ci ./frontend
