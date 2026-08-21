@@ -38,7 +38,7 @@ export default async function DoctorDashboardPage() {
         month: "long",
       })}
     >
-      <div className="grid gap-md sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3">
         {data.metrics.map((m) => (
           <MetricCard
             key={m.label}
@@ -51,7 +51,7 @@ export default async function DoctorDashboardPage() {
         ))}
       </div>
 
-      <div className="mt-lg grid gap-md lg:grid-cols-2">
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader title="Today" subtitle="Excluding cancellations" />
           <AppointmentList
@@ -71,7 +71,7 @@ export default async function DoctorDashboardPage() {
         </Card>
       </div>
 
-      <Card className="mt-lg">
+      <Card className="mt-6">
         <CardHeader title="My booked minutes" subtitle="Last 30 days" />
         <UtilizationTrendChart data={data.utilization_trend} />
       </Card>

@@ -42,13 +42,13 @@ export function AppShell({
   return (
     <div className="flex min-h-screen">
       <aside className="hidden w-[260px] shrink-0 border-r border-outline-variant bg-container-lowest md:block">
-        <div className="border-b border-outline-variant px-md py-lg">
+        <div className="border-b border-outline-variant px-4 py-6">
           <Link href="/" className="text-lg font-bold tracking-tight text-primary">
             Clinetics
           </Link>
           <p className="mt-1 text-xs uppercase tracking-wide text-secondary">{user.role}</p>
         </div>
-        <nav className="p-sm">
+        <nav className="p-2">
           {items.map((item) => {
             const isActive = item.href === active;
             return (
@@ -73,19 +73,19 @@ export function AppShell({
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between gap-md border-b border-outline-variant bg-container-lowest px-lg py-md">
+        <header className="flex items-center justify-between gap-4 border-b border-outline-variant bg-container-lowest px-6 py-4">
           <div className="min-w-0">
             <h1 className="truncate text-xl font-bold text-primary">{title}</h1>
             {subtitle ? <p className="mt-0.5 text-sm text-secondary">{subtitle}</p> : null}
           </div>
-          <div className="flex shrink-0 items-center gap-md">
+          <div className="flex shrink-0 items-center gap-4">
             <span className="hidden text-sm text-secondary sm:inline">
               {user.full_name ?? user.email}
             </span>
             <LogoutButton />
           </div>
         </header>
-        <main className="flex-1 p-lg">{children}</main>
+        <main className="flex-1 p-6">{children}</main>
       </div>
     </div>
   );

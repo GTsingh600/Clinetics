@@ -42,11 +42,20 @@
   /* ROUND_EIGHT: one radius for cards, buttons, and inputs. */
   --radius-card: 8px;
 
-  /* 4px base grid */
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  /*
+   * NOTE: do NOT define --spacing-sm / -md / -lg / -xl here.
+   *
+   * In Tailwind v4 the --spacing-* namespace also feeds width and max-width
+   * utilities, so declaring --spacing-sm: 8px silently redefines `max-w-sm`
+   * from 24rem to 8px. That collapsed the login card to an 8px column while
+   * every colour and font still applied, so the page looked "half-loaded"
+   * rather than obviously broken.
+   *
+   * Tailwind's default numeric scale already IS the design system's 4px grid,
+   * so the tokens are expressed as utilities instead:
+   *     sm  8px -> p-2 / gap-2      lg  24px -> p-6 / gap-6
+   *     md 16px -> p-4 / gap-4      xl  32px -> p-8 / gap-8
+   */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;

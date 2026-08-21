@@ -42,7 +42,7 @@ export default async function AdminCalendarPage({
           action={<WeekNav base="/admin/calendar" offset={offset} label={weekLabel(days)} />}
         />
 
-        <div className="mb-md flex flex-wrap gap-2">
+        <div className="mb-4 flex flex-wrap gap-2">
           <a
             href={`/admin/calendar?week=${offset}`}
             className={`rounded-card border px-3 py-1 text-xs ${

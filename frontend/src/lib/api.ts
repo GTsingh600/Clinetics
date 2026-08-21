@@ -16,7 +16,60 @@
  * component 401s.
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
+const CONFIGURED_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
+
+/** Loopback spellings that all mean "this machine". */
+const LOOPBACK_HOSTS = new Set(["localhost", "127.0.0.1", "::1", "[::1]"]);
+
+/**
+ * Resolve the API origin for the *browser*.
+ *
+ * Session cookies are scoped to a host. If the page is served from
+ * http://127.0.0.1:3000 but the API base is http://localhost:8000, the cookie
+ * the API sets belongs to `localhost` and the browser never sends it back to
+ * `127.0.0.1` — so login appears to succeed and every subsequent request is
+ * anonymous. The two spellings are the same machine to a human and different
+ * origins to a browser.
+ *
+ * So when BOTH the configured API host and the page host are loopback aliases,
+ * the API host is rewritten to match the page. Restricting the rewrite to
+ * loopback means it can never redirect traffic to an unexpected host in
+ * production, where the configured value is used verbatim.
+ */
+function resolveBaseUrl(): string {
+  // On the server, `fetch` has no cookie jar and hostnames are not user-facing;
+  // use the configured value unchanged.
+  if (typeof window === "undefined") return CONFIGURED_BASE_URL;
+  try {
+    const api = new URL(CONFIGURED_BASE_URL);
+    const pageHost = window.location.hostname;
+    if (
+      api.hostname !== pageHost &&
+      LOOPBACK_HOSTS.has(api.hostname) &&
+      LOOPBACK_HOSTS.has(pageHost)
+    ) {
+      api.hostname = pageHost;
+      return api.origin;
+    }
+  } catch {
+    // A malformed configured URL is not worth crashing over; fall through.
+  }
+  return CONFIGURED_BASE_URL;
+}
+
+const BASE_URL = resolveBaseUrl();
+
+/** The request never reached the API: connection refused, DNS, or CORS. */
+export class NetworkError extends Error {
+  constructor(readonly url: string) {
+    super(
+      "Could not reach the API. Check it is running, and that you opened this " +
+        "app on an origin the API allows — http://localhost:3000 and " +
+        "http://127.0.0.1:3000 are different origins to a browser.",
+    );
+    this.name = "NetworkError";
+  }
+}
 
 export class ApiError extends Error {
   constructor(
@@ -49,12 +102,19 @@ async function toError(res: Response): Promise<ApiError> {
 
 /** Browser-side fetch. `credentials: "include"` sends the session cookie. */
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
-    ...init,
-    credentials: "include",
-    cache: "no-store",
-    headers: { "Content-Type": "application/json", ...init?.headers },
-  });
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}${path}`, {
+      ...init,
+      credentials: "include",
+      cache: "no-store",
+      headers: { "Content-Type": "application/json", ...init?.headers },
+    });
+  } catch {
+    // fetch only rejects when the request never completed. A CORS block looks
+    // identical to a dead server from here, so the message names both.
+    throw new NetworkError(`${BASE_URL}${path}`);
+  }
   if (!res.ok) throw await toError(res);
   if (res.status === 204) return undefined as T;
   return (await res.json()) as T;

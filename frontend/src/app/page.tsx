@@ -26,14 +26,14 @@ export default async function Home() {
   if (user) redirect(homeFor(user.role));
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-lg py-xl">
+    <main className="mx-auto w-full max-w-3xl px-6 py-8">
       <h1 className="text-3xl font-bold tracking-tight">Clinetics</h1>
       <p className="mt-2 text-secondary">
         Forecast demand → optimize schedules with CP-SAT → explain and simulate via a tool-using
         agent. The LLM never makes scheduling decisions.
       </p>
 
-      <div className="mt-lg flex gap-3">
+      <div className="mt-6 flex gap-3">
         <Link
           href="/login"
           className="rounded-card bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
@@ -42,11 +42,11 @@ export default async function Home() {
         </Link>
       </div>
 
-      <div className="mt-lg">
+      <div className="mt-6">
         <SystemStatus />
       </div>
 
-      <h2 className="mt-xl text-sm font-semibold uppercase tracking-wide text-secondary">
+      <h2 className="mt-8 text-sm font-semibold uppercase tracking-wide text-secondary">
         Build progress
       </h2>
       <ol className="mt-3 space-y-1 text-sm">

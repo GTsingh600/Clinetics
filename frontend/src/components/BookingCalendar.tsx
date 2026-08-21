@@ -118,7 +118,7 @@ export function BookingCalendar({
   }
 
   return (
-    <div className="grid gap-md lg:grid-cols-[320px_1fr]">
+    <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
       <Card>
         <CardHeader title="Find a time" />
 
@@ -142,7 +142,7 @@ export function BookingCalendar({
           ))}
         </select>
 
-        <label className="mt-md block text-sm font-medium text-secondary" htmlFor="doctor">
+        <label className="mt-4 block text-sm font-medium text-secondary" htmlFor="doctor">
           Doctor
         </label>
         <select
@@ -165,7 +165,7 @@ export function BookingCalendar({
           <p className="mt-1 text-xs text-warning">No doctor holds this specialty.</p>
         ) : null}
 
-        <label className="mt-md block text-sm font-medium text-secondary" htmlFor="date">
+        <label className="mt-4 block text-sm font-medium text-secondary" htmlFor="date">
           Date
         </label>
         <input
@@ -183,7 +183,7 @@ export function BookingCalendar({
         {message ? (
           <p
             role="status"
-            className={`mt-md rounded-card px-3 py-2 text-sm ${
+            className={`mt-4 rounded-card px-3 py-2 text-sm ${
               message.tone === "ok" ? "bg-success/10 text-success" : "bg-danger/10 text-danger"
             }`}
           >
@@ -195,7 +195,7 @@ export function BookingCalendar({
           type="button"
           disabled={!selected || book.isPending}
           onClick={() => selected && book.mutate(selected)}
-          className="mt-lg w-full rounded-card bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-40"
+          className="mt-6 w-full rounded-card bg-primary px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-40"
         >
           {book.isPending
             ? "Booking…"
@@ -219,13 +219,13 @@ export function BookingCalendar({
         />
 
         {activeDoctorId === null ? (
-          <p className="py-lg text-center text-sm text-outline">Choose a specialty first.</p>
+          <p className="py-6 text-center text-sm text-outline">Choose a specialty first.</p>
         ) : slots.isPending ? (
-          <p className="py-lg text-center text-sm text-outline">Loading times…</p>
+          <p className="py-6 text-center text-sm text-outline">Loading times…</p>
         ) : slots.isError ? (
-          <p className="py-lg text-center text-sm text-danger">Could not load times.</p>
+          <p className="py-6 text-center text-sm text-danger">Could not load times.</p>
         ) : slots.data.length === 0 ? (
-          <p className="py-lg text-center text-sm text-outline">
+          <p className="py-6 text-center text-sm text-outline">
             This doctor does not work on {date}.
           </p>
         ) : (

@@ -28,7 +28,7 @@ export function AppointmentList({
   return (
     <ul className="divide-y divide-outline-variant/60">
       {appointments.map((a) => (
-        <li key={a.id} className="flex items-center justify-between gap-md py-3">
+        <li key={a.id} className="flex items-center justify-between gap-4 py-3">
           <div className="min-w-0">
             <p className="flex items-center gap-2 font-medium text-on-primary-container">
               <span className="tabular">

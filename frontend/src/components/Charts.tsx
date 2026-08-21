@@ -52,7 +52,7 @@ const TOOLTIP_STYLE = {
 
 export function DemandChart({ data }: { data: DemandPoint[] }) {
   if (data.length === 0) {
-    return <p className="py-lg text-center text-sm text-outline">No appointments in this window.</p>;
+    return <p className="py-6 text-center text-sm text-outline">No appointments in this window.</p>;
   }
   return (
     <ResponsiveContainer width="100%" height={220}>
@@ -77,7 +77,7 @@ export function DemandChart({ data }: { data: DemandPoint[] }) {
 
 export function UtilizationTrendChart({ data }: { data: UtilizationPoint[] }) {
   if (data.length === 0) {
-    return <p className="py-lg text-center text-sm text-outline">No utilisation data yet.</p>;
+    return <p className="py-6 text-center text-sm text-outline">No utilisation data yet.</p>;
   }
   return (
     <ResponsiveContainer width="100%" height={220}>

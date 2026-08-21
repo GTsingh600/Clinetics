@@ -25,7 +25,7 @@ export function Card({
   return (
     <div
       className={`rounded-card border border-outline-variant bg-container-lowest ${
-        padded ? "p-md" : ""
+        padded ? "p-4" : ""
       } ${className}`}
     >
       {children}
@@ -35,7 +35,7 @@ export function Card({
 
 export function CardHeader({ title, subtitle, action }: { title: string; subtitle?: string; action?: ReactNode }) {
   return (
-    <div className="mb-md flex items-start justify-between gap-md">
+    <div className="mb-4 flex items-start justify-between gap-4">
       <div>
         <h2 className="text-base font-bold text-primary">{title}</h2>
         {subtitle ? <p className="mt-1 text-sm text-secondary">{subtitle}</p> : null}
@@ -121,7 +121,7 @@ export function StatusBadge({ status }: { status: string }) {
 
 export function EmptyState({ title, hint }: { title: string; hint?: string }) {
   return (
-    <div className="rounded-card border border-dashed border-outline-variant p-xl text-center">
+    <div className="rounded-card border border-dashed border-outline-variant p-8 text-center">
       <p className="font-semibold text-secondary">{title}</p>
       {hint ? <p className="mt-1 text-sm text-outline">{hint}</p> : null}
     </div>
@@ -130,7 +130,7 @@ export function EmptyState({ title, hint }: { title: string; hint?: string }) {
 
 export function ErrorState({ title, detail }: { title: string; detail?: string }) {
   return (
-    <div className="rounded-card border border-danger/30 bg-danger/5 p-md">
+    <div className="rounded-card border border-danger/30 bg-danger/5 p-4">
       <p className="font-semibold text-danger">{title}</p>
       {detail ? <p className="mt-1 text-sm text-secondary">{detail}</p> : null}
     </div>
