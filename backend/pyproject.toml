@@ -101,6 +101,7 @@ ignore = [
 "forecasting/*" = ["N803", "N806"]
 "scripts/train_models.py" = ["N803", "N806"]
 "scripts/evaluate.py" = ["N803", "N806"]
+"scripts/ceiling_analysis.py" = ["N803", "N806"]
 "app/services/inference_service.py" = ["N803", "N806"]
 "tests/unit/test_models.py" = ["N803", "N806"]
 "tests/unit/test_no_leakage.py" = ["N803", "N806"]

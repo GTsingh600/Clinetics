@@ -411,8 +411,52 @@ windows, 31,352 resolved appointments. Committed to
 | Logistic regression | 0.323 ± 0.019 | 0.664 | 0.1576 |
 | Base rate | 0.212 ± 0.009 | 0.500 | 0.1671 |
 
-**1.51× the base rate on PR-AUC.** The ceiling is low by construction: the
-outcome is a Bernoulli draw, so much of the variance is irreducible.
+**1.51× the base rate on PR-AUC.**
+
+#### Is 0.66 any good? — the ceiling analysis
+
+An AUC of 0.66 looks poor next to the numbers people quote for classifiers, and
+the answer to "is that bad?" should be measured, not argued. `scripts/ceiling_analysis.py`
+re-simulates the generative process — importing the generator's own coefficients,
+so nothing is transcribed — while keeping the true probability `p` behind each
+label, then scores `p` against the labels it produced.
+
+```
+simulated 32,000 appointments over 4,000 patients; positive rate 23.3%
+
+  BAYES ceiling - scores the TRUE probability      ROC-AUC 0.7568   PR-AUC 0.4773
+  ceiling ignoring patient history                 ROC-AUC 0.6594   PR-AUC 0.3439
+  realistic - history estimated from prior visits   ROC-AUC 0.6835   PR-AUC 0.3772
+
+ABLATION on the real dataset (temporal holdout):
+  all features                                     ROC-AUC 0.6698   PR-AUC 0.3160
+  without patient history                          ROC-AUC 0.6635   PR-AUC 0.3063
+  patient history only                             ROC-AUC 0.5380   PR-AUC 0.2250
+```
+
+**The hard ceiling is 0.757, not 1.0.** The no-show is drawn as `Bernoulli(p)`,
+so even a model handed the exact `p` cannot predict the coin flip. Measured 0.670
+captures **66% of the signal available above chance**.
+
+**Patient history is worth surprisingly little** — 0.670 with it, 0.664 without.
+Not because the feature is wrong (it correlates at r=+0.13, and the ablation shows
+it contributes) but because patients average **3.8 prior visits**, so their latent
+propensity is estimated from very few observations. Alone, history scores 0.538 —
+barely above chance.
+
+Two things were checked before accepting this:
+
+- **Encoding.** The latent enters the true process as a log-odds offset, so a raw
+  *rate* fed to a linear-in-log-odds model could have been a specification error.
+  It is not: the two encodings correlate with the label at 0.1280 and 0.1294.
+- **Smoothing.** `k=5` shrinks heavily at 3.8 prior visits. Swept k ∈ {1,2,3,5,8}
+  on *training* folds: average precision moved between 0.3554 and 0.3557 — noise.
+
+**The most useful consequence is a falsifiability check.** If this model reported
+AUC 0.95, the correct reaction would be suspicion rather than delight: on data
+whose ceiling is 0.757, that score is evidence of label leakage, not skill.
+Knowing the ceiling is what makes the reported number checkable — and it is the
+reason the leakage tests in §2 exist.
 
 Feature importance recovers the generator's structure in the right order —
 `log_lead_time`, `urgency`, `is_monday`, `is_new_patient`,

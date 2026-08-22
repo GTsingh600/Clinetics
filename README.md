@@ -334,6 +334,27 @@ The classifier's threshold comes from an explicit cost, not from 0.5:
 At 1:1 the optimal policy is to flag almost nothing — an honest finding, and the
 reason all four rows are published rather than just the one that was shipped.
 
+### Is ROC-AUC 0.66 any good?
+
+Measured rather than argued. `make ceiling` re-simulates the generative process
+keeping the true probability behind each label, and scores it:
+
+| | ROC-AUC | PR-AUC |
+|---|---|---|
+| **Bayes ceiling** (knows the true `p`) | **0.757** | 0.477 |
+| ceiling ignoring patient history | 0.659 | 0.344 |
+| **our model** | **0.670** | 0.316 |
+
+The no-show is a `Bernoulli(p)` draw, so **the hard ceiling is 0.757, not 1.0** —
+the model captures **66% of the signal available above chance**. Patient history
+adds little (0.670 with, 0.664 without) because patients average 3.8 prior
+visits, so the latent propensity is estimated from very few observations; both
+the encoding and the shrinkage constant were checked and neither is the cause.
+
+The useful part is falsifiability: a model reporting 0.95 on this data would be
+evidence of **label leakage, not skill**, which is precisely what the 16 leakage
+tests guard against.
+
 ![precision/recall trade-off](./backend/reports/metrics/no_show_precision_recall.png)
 
 Probabilities are **calibrated** (isotonic, Brier reported alongside AUC), because

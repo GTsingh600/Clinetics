@@ -92,6 +92,45 @@ def _ensure_test_database_exists() -> None:
         admin.dispose()
 
 
+def _truncate_test_database() -> None:
+    """Empty every table once, before the session starts.
+
+    The suite is designed around per-test transactions that roll back, which
+    makes it independent of *other tests* but not of data that was already
+    COMMITTED into the database before it started. Anything left behind — most
+    plausibly a `generate_data.py` run pointed at the test database while
+    reproducing CI — then collides with fixtures that create their own clinic
+    and specialties, and the failures look like unrelated test bugs.
+
+    Truncating here makes the suite order-independent and self-healing. It is
+    safe by construction: `TEST_DATABASE_URL_SYNC` is derived by appending
+    `_test`, so this can never point at a working database.
+
+    Tolerates a database that has no tables yet: on a fresh checkout this runs
+    before the first migration.
+    """
+    from sqlalchemy import create_engine as _create_engine
+
+    engine = _create_engine(TEST_DATABASE_URL_SYNC, isolation_level="AUTOCOMMIT")
+    try:
+        with engine.connect() as conn:
+            tables = (
+                conn.execute(
+                    sa_text(
+                        "SELECT quote_ident(schemaname) || '.' || quote_ident(tablename) "
+                        "FROM pg_tables WHERE schemaname IN ('public', 'analytics') "
+                        "AND tablename <> 'alembic_version'"
+                    )
+                )
+                .scalars()
+                .all()
+            )
+            if tables:
+                conn.execute(sa_text(f"TRUNCATE {', '.join(tables)} RESTART IDENTITY CASCADE"))
+    finally:
+        engine.dispose()
+
+
 @pytest.fixture(scope="session")
 def _migrated_database() -> str:
     """Bring the test database to `head` exactly once per session.
@@ -101,6 +140,7 @@ def _migrated_database() -> str:
     are broken, this fails the same way `alembic upgrade head` would.
     """
     _ensure_test_database_exists()
+    _truncate_test_database()
     result = subprocess.run(
         ["alembic", "upgrade", "head"],
         cwd=BACKEND_ROOT,

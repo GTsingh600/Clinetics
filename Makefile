@@ -93,6 +93,10 @@ train: ## Train the no-show, demand and duration models; write artifacts
 eval: ## THE MODEL GATE: rolling-origin CV against the baselines, writes metrics
 	cd backend && $(UV) run python scripts/evaluate.py
 
+.PHONY: ceiling
+ceiling: ## How good COULD the no-show model be? Bayes ceiling + feature ablation
+	cd backend && $(UV) run python scripts/ceiling_analysis.py
+
 .PHONY: explain
 explain: ## EXPLAIN ANALYZE the (doctor_id, appointment_date) index, with/without
 	cd backend && $(UV) run python scripts/explain_index.py
