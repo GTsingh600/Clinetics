@@ -102,7 +102,11 @@ jobs:
       # integration tests assume a database they can fill and roll back.
       # `--reset` truncates first, so the two never see each other's data.
       - name: Generate synthetic data
-        run: uv run python scripts/generate_data.py --reset --months 12 --doctors 8 --patients 600
+        # 24 months, not 12: the evaluation gate runs four 90-day rolling-origin
+        # folds after a 270-day minimum training window, which needs 630 days of
+        # history. Seeding less would make CI run a *different* validation
+        # configuration from the one the committed metrics were produced with.
+        run: uv run python scripts/generate_data.py --reset --months 24 --doctors 8 --patients 600
 
       - name: Synthetic data validation gate
         # Phase 1's headline claim is that the data contains genuinely learnable
