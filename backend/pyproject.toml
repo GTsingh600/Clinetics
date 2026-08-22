@@ -93,6 +93,17 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 "alembic/versions/*" = ["E402", "F401", "N999"]
 "tests/*" = ["S101"]
+# N803/N806: a capital `X` for a design matrix and lowercase `y` for the target
+# is universal notation in machine learning -- it is scikit-learn's own API
+# signature. Renaming to `x` here would make this code read as unlike every ML
+# reference a reviewer knows. The exception is scoped to the modelling code
+# rather than applied globally.
+"forecasting/*" = ["N803", "N806"]
+"scripts/train_models.py" = ["N803", "N806"]
+"scripts/evaluate.py" = ["N803", "N806"]
+"app/services/inference_service.py" = ["N803", "N806"]
+"tests/unit/test_models.py" = ["N803", "N806"]
+"tests/unit/test_no_leakage.py" = ["N803", "N806"]
 
 [tool.mypy]
 python_version = "3.12"
@@ -104,7 +115,7 @@ disallow_untyped_defs = true
 no_implicit_optional = true
 # Third-party libs without stubs; tighten as the project grows.
 [[tool.mypy.overrides]]
-module = ["celery.*", "jose.*", "bcrypt.*", "ortools.*", "lightgbm.*", "xgboost.*", "sklearn.*", "matplotlib.*", "faker.*", "pandas.*", "scipy.*"]
+module = ["celery.*", "jose.*", "bcrypt.*", "ortools.*", "lightgbm.*", "xgboost.*", "sklearn.*", "matplotlib.*", "faker.*", "pandas.*", "scipy.*", "joblib.*"]
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]

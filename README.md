@@ -31,8 +31,8 @@ Forecast  →  Optimize  →  Agent orchestrates & explains  →  Simulate "what
 | **0 — Scaffold** | Repo, Docker Compose, FastAPI + Next.js skeletons, Alembic, CI | ✅ **Done & verified** |
 | **1 — Database** | Models, constraints, EXCLUDE, trigger, synthetic data + validation gate | ✅ **Done & verified** |
 | **2 — Core app** | Auth + 3-role RBAC, CRUD, calendar UI, concurrency-safe booking | ✅ **Done & verified** |
-| 3 — Forecasting | No-show classifier, demand & duration models, eval harness | ⬜ Next |
-| 4 — Optimizer | CP-SAT model, greedy baseline, benchmark | ⬜ |
+| **3 — Forecasting** | No-show classifier, demand & duration models, eval harness | ✅ **Done & verified** |
+| 4 — Optimizer | CP-SAT model, greedy baseline, benchmark | ⬜ Next |
 | 5 — Agent | Tool schemas, tool-calling loop, grounded explanations | ⬜ |
 | 6 — Simulation | What-if endpoint, before/after diff UI | ⬜ |
 | 7 — Rigor | Load test, concurrency writeup, demo fallback, full README | ⬜ |
@@ -156,6 +156,10 @@ why it was built that way, and the underlying concepts.
   bcrypt's 72-byte limit, refresh rotation and reuse detection, CSRF without a
   double-submit token, object-level authorization, **the two booking races and
   why they need different fixes**, server components and the cookie problem
+- [Phase 3 — Forecasting](./docs/phase-3-forecasting.md) — prediction-time
+  leakage and the three ways to get it wrong, rolling-origin validation, the
+  missing-zeros trap, why baselines are the result, choosing an operating point
+  from cost, calibration vs ranking, and **shipping the simpler model when it wins**
 - [Design system](./docs/design-system.md) — palette, typography, tokens
 - [Glossary](./docs/glossary.md) — every term in the project, defined
 
@@ -187,9 +191,11 @@ PostgreSQL rather than in application code:
 
 ```bash
 make seed         # generate synthetic data
-make validate     # THE GATE - fails if the data lacks learnable structure
+make validate     # THE DATA GATE - fails if the data lacks learnable structure
 make explain      # EXPLAIN ANALYZE the composite index, with and without
 make demo-users   # one login per role, linked to the busiest seeded records
+make train        # train the no-show, demand and duration models
+make eval         # THE MODEL GATE - rolling-origin CV against the baselines
 ```
 
 ### Synthetic data
@@ -275,6 +281,68 @@ calendar — ships zero JavaScript.
 Design tokens from [docs/design-system.md](./docs/design-system.md) are wired
 into Tailwind v4's `@theme`, so components reference `bg-primary` and
 `rounded-card` rather than hex values.
+
+---
+
+## Forecasting (Phase 3)
+
+Three models — no-show, demand, duration — with an evaluation harness that
+**exits non-zero** if a model fails to beat the baseline it is measured against.
+
+**Validation is rolling-origin, never random.** Appointments are ordered in
+time; a random split trains on the future and tests on the past, which raises the
+reported score while lowering real accuracy. Four expanding-window folds give a
+mean *and* a spread, so a lucky cutoff shows up as variance instead of as a
+result.
+
+**Prediction happens at booking time**, which fixes what counts as leakage. The
+patient-history feature — the most predictive one, by construction — may only use
+appointments that had already *taken place* when the row was booked. Not booked
+earlier: an appointment booked in January for June has no outcome in February.
+[16 tests](./backend/tests/unit/test_no_leakage.py) pin that boundary, including
+the subtle case.
+
+### The result worth reading
+
+Two of the three models **lost to their baselines**, and the response was to ship
+the simpler estimator:
+
+| Model | Model score | Baseline | Outcome |
+|---|---|---|---|
+| No-show | PR-AUC **0.320** | base rate 0.212 · logistic 0.323 | logistic wins → **logistic ships** |
+| Demand | MAE **0.4817** | profile mean 0.4817 | tie → **profile ships** (4/4 folds) |
+| Duration | MAE **5.31 min** | specialty mean 5.70 min | **6.9% better** → model ships |
+
+Both are cases where the baseline is close to the *true* generating process — the
+no-show data comes from a logistic model, and demand is essentially a
+weekday-by-hour profile. Rather than tune until the complicated model won, both
+now select between candidates on **training data** (`TimeSeriesSplit`, never the
+evaluation folds), and the harness prints which one was chosen so a tie cannot be
+misread as a win.
+
+### The operating point
+
+The classifier's threshold comes from an explicit cost, not from 0.5:
+
+| Missed no-show costs | threshold | precision | recall |
+|---|---|---|---|
+| 1× an over-book | 0.55 | 0.500 | 0.001 |
+| 2× | 0.33 | 0.374 | 0.207 |
+| 3× | 0.28 | 0.331 | 0.433 |
+| 5× | 0.17 | 0.260 | 0.881 |
+
+At 1:1 the optimal policy is to flag almost nothing — an honest finding, and the
+reason all four rows are published rather than just the one that was shipped.
+
+![precision/recall trade-off](./backend/reports/metrics/no_show_precision_recall.png)
+
+Probabilities are **calibrated** (isotonic, Brier reported alongside AUC), because
+the optimizer sums them to get an expected no-show count and summing uncalibrated
+scores produces a number with no meaning.
+
+Prediction endpoints are **staff-only**: a patient cannot read their own no-show
+score. It is a self-fulfilling nudge and a fairness problem, and there is a test
+so the decision cannot erode.
 
 ---
 

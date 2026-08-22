@@ -83,6 +83,16 @@ validate: ## THE VALIDATION GATE: prove the synthetic data has learnable structu
 demo-users: ## Create one login per role, linked to the busiest seeded records
 	cd backend && $(UV) run python scripts/create_demo_users.py
 
+# --- Models ----------------------------------------------------------------
+
+.PHONY: train
+train: ## Train the no-show, demand and duration models; write artifacts
+	cd backend && $(UV) run python scripts/train_models.py
+
+.PHONY: eval
+eval: ## THE MODEL GATE: rolling-origin CV against the baselines, writes metrics
+	cd backend && $(UV) run python scripts/evaluate.py
+
 .PHONY: explain
 explain: ## EXPLAIN ANALYZE the (doctor_id, appointment_date) index, with/without
 	cd backend && $(UV) run python scripts/explain_index.py

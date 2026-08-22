@@ -1,0 +1,1097 @@
+{
+  "data": {
+    "rows": 36824,
+    "resolved_rows": 31352,
+    "no_show_rate": 0.2214,
+    "date_range": [
+      "2023-09-06",
+      "2026-09-20"
+    ],
+    "patients": 3999,
+    "specialties": 5
+  },
+  "seed": 42,
+  "validation": {
+    "scheme": "rolling-origin (expanding window)",
+    "folds": 4,
+    "test_days_per_fold": 90
+  },
+  "no_show": {
+    "folds": [
+      {
+        "fold": "fold 1: train < 2025-09-26 | test 2025-09-26..2025-12-24",
+        "train_rows": 21663,
+        "test_rows": 2223,
+        "model": {
+          "threshold": 0.5,
+          "accuracy": 0.7746,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.6695,
+          "pr_auc": 0.3478,
+          "brier": 0.1637,
+          "confusion_matrix": {
+            "true_negatives": 1722,
+            "false_positives": 0,
+            "false_negatives": 501,
+            "true_positives": 0
+          },
+          "support": 2223,
+          "positive_rate": 0.2254
+        },
+        "baselines": {
+          "base_rate": {
+            "threshold": 0.5,
+            "accuracy": 0.7746,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "roc_auc": 0.5,
+            "pr_auc": 0.2254,
+            "brier": 0.1746,
+            "confusion_matrix": {
+              "true_negatives": 1722,
+              "false_positives": 0,
+              "false_negatives": 501,
+              "true_positives": 0
+            },
+            "support": 2223,
+            "positive_rate": 0.2254
+          },
+          "logistic_regression": {
+            "threshold": 0.5,
+            "accuracy": 0.7746,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "roc_auc": 0.6702,
+            "pr_auc": 0.3502,
+            "brier": 0.164,
+            "confusion_matrix": {
+              "true_negatives": 1722,
+              "false_positives": 0,
+              "false_negatives": 501,
+              "true_positives": 0
+            },
+            "support": 2223,
+            "positive_rate": 0.2254
+          }
+        },
+        "feature_importance": {
+          "log_lead_time": 0.1985,
+          "urgency_ordinal": 0.1854,
+          "patient_prior_no_show_rate": 0.0989,
+          "is_monday": 0.0818,
+          "is_new_patient": 0.0785,
+          "is_early_slot": 0.0776,
+          "patient_prior_no_shows": 0.0584,
+          "patient_prior_appointments": 0.0432,
+          "weekday": 0.0339,
+          "is_late_slot": 0.0305,
+          "hour_of_day": 0.0295,
+          "is_friday": 0.023,
+          "duration_minutes": 0.017,
+          "month": 0.015,
+          "days_since_patient_last_appointment": 0.0127,
+          "lead_time_days": 0.0083,
+          "specialty_code": 0.0076
+        }
+      },
+      {
+        "fold": "fold 2: train < 2025-12-25 | test 2025-12-25..2026-03-24",
+        "train_rows": 23886,
+        "test_rows": 2750,
+        "model": {
+          "threshold": 0.5,
+          "accuracy": 0.7891,
+          "precision": 0.25,
+          "recall": 0.0017,
+          "f1": 0.0034,
+          "roc_auc": 0.6542,
+          "pr_auc": 0.3059,
+          "brier": 0.1579,
+          "confusion_matrix": {
+            "true_negatives": 2169,
+            "false_positives": 3,
+            "false_negatives": 577,
+            "true_positives": 1
+          },
+          "support": 2750,
+          "positive_rate": 0.2102
+        },
+        "baselines": {
+          "base_rate": {
+            "threshold": 0.5,
+            "accuracy": 0.7898,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "roc_auc": 0.5,
+            "pr_auc": 0.2102,
+            "brier": 0.1663,
+            "confusion_matrix": {
+              "true_negatives": 2172,
+              "false_positives": 0,
+              "false_negatives": 578,
+              "true_positives": 0
+            },
+            "support": 2750,
+            "positive_rate": 0.2102
+          },
+          "logistic_regression": {
+            "threshold": 0.5,
+            "accuracy": 0.7895,
+            "precision": 0.3333,
+            "recall": 0.0017,
+            "f1": 0.0034,
+            "roc_auc": 0.6554,
+            "pr_auc": 0.3088,
+            "brier": 0.1577,
+            "confusion_matrix": {
+              "true_negatives": 2170,
+              "false_positives": 2,
+              "false_negatives": 577,
+              "true_positives": 1
+            },
+            "support": 2750,
+            "positive_rate": 0.2102
+          }
+        },
+        "feature_importance": {
+          "urgency_ordinal": 0.1948,
+          "log_lead_time": 0.1928,
+          "patient_prior_no_show_rate": 0.1035,
+          "is_monday": 0.0819,
+          "is_early_slot": 0.0777,
+          "is_new_patient": 0.0766,
+          "patient_prior_no_shows": 0.0605,
+          "weekday": 0.0378,
+          "patient_prior_appointments": 0.0374,
+          "is_late_slot": 0.0353,
+          "hour_of_day": 0.022,
+          "is_friday": 0.0209,
+          "lead_time_days": 0.0157,
+          "duration_minutes": 0.0149,
+          "days_since_patient_last_appointment": 0.012,
+          "month": 0.0091,
+          "specialty_code": 0.0071
+        }
+      },
+      {
+        "fold": "fold 3: train < 2026-03-25 | test 2026-03-25..2026-06-22",
+        "train_rows": 26636,
+        "test_rows": 2947,
+        "model": {
+          "threshold": 0.5,
+          "accuracy": 0.7995,
+          "precision": 0.5,
+          "recall": 0.0034,
+          "f1": 0.0067,
+          "roc_auc": 0.6814,
+          "pr_auc": 0.3287,
+          "brier": 0.1502,
+          "confusion_matrix": {
+            "true_negatives": 2354,
+            "false_positives": 2,
+            "false_negatives": 589,
+            "true_positives": 2
+          },
+          "support": 2947,
+          "positive_rate": 0.2005
+        },
+        "baselines": {
+          "base_rate": {
+            "threshold": 0.5,
+            "accuracy": 0.7995,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "roc_auc": 0.5,
+            "pr_auc": 0.2005,
+            "brier": 0.1609,
+            "confusion_matrix": {
+              "true_negatives": 2356,
+              "false_positives": 0,
+              "false_negatives": 591,
+              "true_positives": 0
+            },
+            "support": 2947,
+            "positive_rate": 0.2005
+          },
+          "logistic_regression": {
+            "threshold": 0.5,
+            "accuracy": 0.7995,
+            "precision": 0.5,
+            "recall": 0.0017,
+            "f1": 0.0034,
+            "roc_auc": 0.6819,
+            "pr_auc": 0.3331,
+            "brier": 0.1501,
+            "confusion_matrix": {
+              "true_negatives": 2355,
+              "false_positives": 1,
+              "false_negatives": 590,
+              "true_positives": 1
+            },
+            "support": 2947,
+            "positive_rate": 0.2005
+          }
+        },
+        "feature_importance": {
+          "log_lead_time": 0.1997,
+          "urgency_ordinal": 0.1974,
+          "patient_prior_no_show_rate": 0.1129,
+          "is_monday": 0.0791,
+          "is_early_slot": 0.0742,
+          "is_new_patient": 0.0736,
+          "patient_prior_no_shows": 0.0589,
+          "is_late_slot": 0.0376,
+          "patient_prior_appointments": 0.0372,
+          "weekday": 0.0367,
+          "is_friday": 0.0234,
+          "hour_of_day": 0.0164,
+          "duration_minutes": 0.0153,
+          "specialty_code": 0.0124,
+          "lead_time_days": 0.012,
+          "days_since_patient_last_appointment": 0.0091,
+          "month": 0.0044
+        }
+      },
+      {
+        "fold": "fold 4: train < 2026-06-23 | test 2026-06-23..2026-09-20",
+        "train_rows": 29583,
+        "test_rows": 1769,
+        "model": {
+          "threshold": 0.5,
+          "accuracy": 0.7886,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "roc_auc": 0.6483,
+          "pr_auc": 0.2988,
+          "brier": 0.1592,
+          "confusion_matrix": {
+            "true_negatives": 1395,
+            "false_positives": 1,
+            "false_negatives": 373,
+            "true_positives": 0
+          },
+          "support": 1769,
+          "positive_rate": 0.2109
+        },
+        "baselines": {
+          "base_rate": {
+            "threshold": 0.5,
+            "accuracy": 0.7891,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "roc_auc": 0.5,
+            "pr_auc": 0.2109,
+            "brier": 0.1665,
+            "confusion_matrix": {
+              "true_negatives": 1396,
+              "false_positives": 0,
+              "false_negatives": 373,
+              "true_positives": 0
+            },
+            "support": 1769,
+            "positive_rate": 0.2109
+          },
+          "logistic_regression": {
+            "threshold": 0.5,
+            "accuracy": 0.7891,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "roc_auc": 0.6493,
+            "pr_auc": 0.301,
+            "brier": 0.1587,
+            "confusion_matrix": {
+              "true_negatives": 1396,
+              "false_positives": 0,
+              "false_negatives": 373,
+              "true_positives": 0
+            },
+            "support": 1769,
+            "positive_rate": 0.2109
+          }
+        },
+        "feature_importance": {
+          "urgency_ordinal": 0.202,
+          "log_lead_time": 0.1938,
+          "patient_prior_no_show_rate": 0.1278,
+          "is_monday": 0.0832,
+          "is_new_patient": 0.0702,
+          "is_early_slot": 0.07,
+          "patient_prior_no_shows": 0.0429,
+          "is_late_slot": 0.0427,
+          "weekday": 0.0388,
+          "patient_prior_appointments": 0.0348,
+          "is_friday": 0.0205,
+          "lead_time_days": 0.0182,
+          "duration_minutes": 0.0146,
+          "hour_of_day": 0.0119,
+          "specialty_code": 0.0114,
+          "days_since_patient_last_appointment": 0.0098,
+          "month": 0.0071
+        }
+      }
+    ],
+    "summary": {
+      "model": {
+        "pr_auc": {
+          "mean": 0.3203,
+          "std": 0.0193
+        },
+        "roc_auc": {
+          "mean": 0.6633,
+          "std": 0.013
+        },
+        "brier": {
+          "mean": 0.1578,
+          "std": 0.0049
+        },
+        "precision": {
+          "mean": 0.1875,
+          "std": 0.2073
+        },
+        "recall": {
+          "mean": 0.0013,
+          "std": 0.0014
+        },
+        "f1": {
+          "mean": 0.0025,
+          "std": 0.0028
+        }
+      },
+      "logistic_regression": {
+        "pr_auc": {
+          "mean": 0.3233,
+          "std": 0.0195
+        },
+        "roc_auc": {
+          "mean": 0.6642,
+          "std": 0.0127
+        },
+        "brier": {
+          "mean": 0.1576,
+          "std": 0.005
+        }
+      },
+      "base_rate": {
+        "pr_auc": {
+          "mean": 0.2117,
+          "std": 0.0089
+        },
+        "roc_auc": {
+          "mean": 0.5,
+          "std": 0.0
+        },
+        "brier": {
+          "mean": 0.1671,
+          "std": 0.0049
+        }
+      }
+    },
+    "operating_points": {
+      "fn_cost_1x": {
+        "threshold": 0.55,
+        "rationale": "minimises expected cost with a missed no-show weighted 1.0x an over-booked slot (FN=1.0, FP=1.0)",
+        "accuracy": 0.7891,
+        "precision": 0.5,
+        "recall": 0.0005,
+        "f1": 0.001,
+        "roc_auc": 0.6656,
+        "pr_auc": 0.3198,
+        "brier": 0.1571,
+        "confusion_matrix": {
+          "true_negatives": 7645,
+          "false_positives": 1,
+          "false_negatives": 2042,
+          "true_positives": 1
+        },
+        "support": 9689,
+        "positive_rate": 0.2109
+      },
+      "fn_cost_2x": {
+        "threshold": 0.33,
+        "rationale": "minimises expected cost with a missed no-show weighted 2.0x an over-booked slot (FN=2.0, FP=1.0)",
+        "accuracy": 0.7597,
+        "precision": 0.3742,
+        "recall": 0.2075,
+        "f1": 0.267,
+        "roc_auc": 0.6656,
+        "pr_auc": 0.3198,
+        "brier": 0.1571,
+        "confusion_matrix": {
+          "true_negatives": 6937,
+          "false_positives": 709,
+          "false_negatives": 1619,
+          "true_positives": 424
+        },
+        "support": 9689,
+        "positive_rate": 0.2109
+      },
+      "fn_cost_3x": {
+        "threshold": 0.28,
+        "rationale": "minimises expected cost with a missed no-show weighted 3.0x an over-booked slot (FN=3.0, FP=1.0)",
+        "accuracy": 0.6955,
+        "precision": 0.3305,
+        "recall": 0.4327,
+        "f1": 0.3747,
+        "roc_auc": 0.6656,
+        "pr_auc": 0.3198,
+        "brier": 0.1571,
+        "confusion_matrix": {
+          "true_negatives": 5855,
+          "false_positives": 1791,
+          "false_negatives": 1159,
+          "true_positives": 884
+        },
+        "support": 9689,
+        "positive_rate": 0.2109
+      },
+      "fn_cost_5x": {
+        "threshold": 0.17,
+        "rationale": "minimises expected cost with a missed no-show weighted 5.0x an over-booked slot (FN=5.0, FP=1.0)",
+        "accuracy": 0.4471,
+        "precision": 0.2604,
+        "recall": 0.8815,
+        "f1": 0.4021,
+        "roc_auc": 0.6656,
+        "pr_auc": 0.3198,
+        "brier": 0.1571,
+        "confusion_matrix": {
+          "true_negatives": 2531,
+          "false_positives": 5115,
+          "false_negatives": 242,
+          "true_positives": 1801
+        },
+        "support": 9689,
+        "positive_rate": 0.2109
+      }
+    },
+    "precision_recall_curve": [
+      {
+        "threshold": 0.05,
+        "precision": 0.2226,
+        "recall": 0.9902,
+        "f1": 0.3635
+      },
+      {
+        "threshold": 0.0684,
+        "precision": 0.229,
+        "recall": 0.9824,
+        "f1": 0.3714
+      },
+      {
+        "threshold": 0.0867,
+        "precision": 0.2351,
+        "recall": 0.9687,
+        "f1": 0.3784
+      },
+      {
+        "threshold": 0.1051,
+        "precision": 0.2466,
+        "recall": 0.9437,
+        "f1": 0.391
+      },
+      {
+        "threshold": 0.1235,
+        "precision": 0.2517,
+        "recall": 0.9285,
+        "f1": 0.396
+      },
+      {
+        "threshold": 0.1418,
+        "precision": 0.2523,
+        "recall": 0.9207,
+        "f1": 0.3961
+      },
+      {
+        "threshold": 0.1602,
+        "precision": 0.2559,
+        "recall": 0.8982,
+        "f1": 0.3983
+      },
+      {
+        "threshold": 0.1786,
+        "precision": 0.2651,
+        "recall": 0.8443,
+        "f1": 0.4035
+      },
+      {
+        "threshold": 0.1969,
+        "precision": 0.2706,
+        "recall": 0.8042,
+        "f1": 0.405
+      },
+      {
+        "threshold": 0.2153,
+        "precision": 0.2877,
+        "recall": 0.6926,
+        "f1": 0.4066
+      },
+      {
+        "threshold": 0.2337,
+        "precision": 0.2965,
+        "recall": 0.606,
+        "f1": 0.3982
+      },
+      {
+        "threshold": 0.252,
+        "precision": 0.3089,
+        "recall": 0.536,
+        "f1": 0.3919
+      },
+      {
+        "threshold": 0.2704,
+        "precision": 0.316,
+        "recall": 0.4968,
+        "f1": 0.3863
+      },
+      {
+        "threshold": 0.2888,
+        "precision": 0.3437,
+        "recall": 0.3793,
+        "f1": 0.3606
+      },
+      {
+        "threshold": 0.3071,
+        "precision": 0.3501,
+        "recall": 0.2966,
+        "f1": 0.3211
+      },
+      {
+        "threshold": 0.3255,
+        "precision": 0.366,
+        "recall": 0.2379,
+        "f1": 0.2883
+      },
+      {
+        "threshold": 0.3439,
+        "precision": 0.3695,
+        "recall": 0.1733,
+        "f1": 0.2359
+      },
+      {
+        "threshold": 0.3622,
+        "precision": 0.4195,
+        "recall": 0.0675,
+        "f1": 0.1164
+      },
+      {
+        "threshold": 0.3806,
+        "precision": 0.3988,
+        "recall": 0.0318,
+        "f1": 0.0589
+      },
+      {
+        "threshold": 0.399,
+        "precision": 0.4035,
+        "recall": 0.0225,
+        "f1": 0.0427
+      },
+      {
+        "threshold": 0.4173,
+        "precision": 0.3973,
+        "recall": 0.0142,
+        "f1": 0.0274
+      },
+      {
+        "threshold": 0.4357,
+        "precision": 0.3864,
+        "recall": 0.0083,
+        "f1": 0.0163
+      },
+      {
+        "threshold": 0.4541,
+        "precision": 0.381,
+        "recall": 0.0039,
+        "f1": 0.0078
+      },
+      {
+        "threshold": 0.4724,
+        "precision": 0.4,
+        "recall": 0.0039,
+        "f1": 0.0078
+      },
+      {
+        "threshold": 0.4908,
+        "precision": 0.4,
+        "recall": 0.002,
+        "f1": 0.0039
+      },
+      {
+        "threshold": 0.5092,
+        "precision": 0.375,
+        "recall": 0.0015,
+        "f1": 0.0029
+      },
+      {
+        "threshold": 0.5276,
+        "precision": 0.4286,
+        "recall": 0.0015,
+        "f1": 0.0029
+      },
+      {
+        "threshold": 0.5459,
+        "precision": 0.5,
+        "recall": 0.0005,
+        "f1": 0.001
+      },
+      {
+        "threshold": 0.5643,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.5827,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.601,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.6194,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.6378,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.6561,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.6745,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.6929,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.7112,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.7296,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.748,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.7663,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.7847,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.8031,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.8214,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.8398,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.8582,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.8765,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.8949,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.9133,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.9316,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      {
+        "threshold": 0.95,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    ],
+    "pooled_support": 9689,
+    "pooled_positive_rate": 0.2109
+  },
+  "demand": {
+    "folds": [
+      {
+        "fold": "fold 1: train < 2025-09-26 | test 2025-09-26..2025-12-24",
+        "test_cells": 4950,
+        "model": {
+          "mae": 0.4544,
+          "rmse": 0.6672,
+          "bias": 0.0738,
+          "r2": 0.2943,
+          "support": 4950
+        },
+        "baselines": {
+          "seasonal_naive": {
+            "mae": 0.4544,
+            "rmse": 0.6672,
+            "bias": 0.0738,
+            "r2": 0.2943,
+            "support": 4950
+          }
+        },
+        "selected_strategy": "profile",
+        "selection_scores": {
+          "gbm_mae": 0.487,
+          "profile_mae": 0.4823
+        },
+        "feature_importance": {
+          "profile_mean": 1.0
+        }
+      },
+      {
+        "fold": "fold 2: train < 2025-12-25 | test 2025-12-25..2026-03-24",
+        "test_cells": 4950,
+        "model": {
+          "mae": 0.4878,
+          "rmse": 0.7599,
+          "bias": -0.0404,
+          "r2": 0.3735,
+          "support": 4950
+        },
+        "baselines": {
+          "seasonal_naive": {
+            "mae": 0.4878,
+            "rmse": 0.7599,
+            "bias": -0.0404,
+            "r2": 0.3735,
+            "support": 4950
+          }
+        },
+        "selected_strategy": "profile",
+        "selection_scores": {
+          "gbm_mae": 0.4841,
+          "profile_mae": 0.4793
+        },
+        "feature_importance": {
+          "profile_mean": 1.0
+        }
+      },
+      {
+        "fold": "fold 3: train < 2026-03-25 | test 2026-03-25..2026-06-22",
+        "test_cells": 4950,
+        "model": {
+          "mae": 0.4988,
+          "rmse": 0.781,
+          "bias": -0.0766,
+          "r2": 0.3851,
+          "support": 4950
+        },
+        "baselines": {
+          "seasonal_naive": {
+            "mae": 0.4988,
+            "rmse": 0.781,
+            "bias": -0.0766,
+            "r2": 0.3851,
+            "support": 4950
+          }
+        },
+        "selected_strategy": "profile",
+        "selection_scores": {
+          "gbm_mae": 0.4859,
+          "profile_mae": 0.4819
+        },
+        "feature_importance": {
+          "profile_mean": 1.0
+        }
+      },
+      {
+        "fold": "fold 4: train < 2026-06-23 | test 2026-06-23..2026-09-20",
+        "test_cells": 4950,
+        "model": {
+          "mae": 0.4857,
+          "rmse": 0.7266,
+          "bias": -0.0061,
+          "r2": 0.354,
+          "support": 4950
+        },
+        "baselines": {
+          "seasonal_naive": {
+            "mae": 0.4857,
+            "rmse": 0.7266,
+            "bias": -0.0061,
+            "r2": 0.354,
+            "support": 4950
+          }
+        },
+        "selected_strategy": "profile",
+        "selection_scores": {
+          "gbm_mae": 0.4888,
+          "profile_mae": 0.4857
+        },
+        "feature_importance": {
+          "profile_mean": 1.0
+        }
+      }
+    ],
+    "summary": {
+      "model": {
+        "mae": {
+          "mean": 0.4817,
+          "std": 0.0165
+        },
+        "rmse": {
+          "mean": 0.7337,
+          "std": 0.043
+        },
+        "bias": {
+          "mean": -0.0123,
+          "std": 0.0556
+        },
+        "r2": {
+          "mean": 0.3517,
+          "std": 0.035
+        }
+      },
+      "seasonal_naive": {
+        "mae": {
+          "mean": 0.4817,
+          "std": 0.0165
+        },
+        "rmse": {
+          "mean": 0.7337,
+          "std": 0.043
+        },
+        "bias": {
+          "mean": -0.0123,
+          "std": 0.0556
+        },
+        "r2": {
+          "mean": 0.3517,
+          "std": 0.035
+        }
+      }
+    },
+    "zero_cell_fraction": 0.6586,
+    "total_cells": 61105,
+    "selected_strategy": [
+      "profile",
+      "profile",
+      "profile",
+      "profile"
+    ]
+  },
+  "duration": {
+    "folds": [
+      {
+        "fold": "fold 1: train < 2025-09-26 | test 2025-09-26..2025-12-24",
+        "test_rows": 1722,
+        "model": {
+          "mae": 5.2836,
+          "rmse": 7.3651,
+          "bias": -0.7919,
+          "r2": 0.5262,
+          "support": 1722
+        },
+        "baselines": {
+          "specialty_mean": {
+            "mae": 5.743,
+            "rmse": 7.3785,
+            "bias": 1.0725,
+            "r2": 0.5245,
+            "support": 1722
+          }
+        },
+        "feature_importance": {
+          "hour_of_day": 0.2759,
+          "patient_prior_appointments": 0.2301,
+          "weekday": 0.218,
+          "specialty_code": 0.1529,
+          "urgency_ordinal": 0.081,
+          "is_new_patient": 0.0422
+        }
+      },
+      {
+        "fold": "fold 2: train < 2025-12-25 | test 2025-12-25..2026-03-24",
+        "test_rows": 2172,
+        "model": {
+          "mae": 5.3876,
+          "rmse": 7.7782,
+          "bias": -1.0955,
+          "r2": 0.5132,
+          "support": 2172
+        },
+        "baselines": {
+          "specialty_mean": {
+            "mae": 5.801,
+            "rmse": 7.6952,
+            "bias": 0.7038,
+            "r2": 0.5236,
+            "support": 2172
+          }
+        },
+        "feature_importance": {
+          "hour_of_day": 0.2872,
+          "weekday": 0.2304,
+          "patient_prior_appointments": 0.2241,
+          "specialty_code": 0.1456,
+          "urgency_ordinal": 0.0758,
+          "is_new_patient": 0.0368
+        }
+      },
+      {
+        "fold": "fold 3: train < 2026-03-25 | test 2026-03-25..2026-06-22",
+        "test_rows": 2356,
+        "model": {
+          "mae": 5.2956,
+          "rmse": 7.4483,
+          "bias": -1.0037,
+          "r2": 0.5375,
+          "support": 2356
+        },
+        "baselines": {
+          "specialty_mean": {
+            "mae": 5.6737,
+            "rmse": 7.4081,
+            "bias": 0.6833,
+            "r2": 0.5424,
+            "support": 2356
+          }
+        },
+        "feature_importance": {
+          "hour_of_day": 0.2906,
+          "patient_prior_appointments": 0.2476,
+          "weekday": 0.2141,
+          "specialty_code": 0.1353,
+          "urgency_ordinal": 0.0725,
+          "is_new_patient": 0.0399
+        }
+      },
+      {
+        "fold": "fold 4: train < 2026-06-23 | test 2026-06-23..2026-09-20",
+        "test_rows": 1396,
+        "model": {
+          "mae": 5.2525,
+          "rmse": 7.3514,
+          "bias": -1.2105,
+          "r2": 0.5275,
+          "support": 1396
+        },
+        "baselines": {
+          "specialty_mean": {
+            "mae": 5.5646,
+            "rmse": 7.2486,
+            "bias": 0.4331,
+            "r2": 0.5406,
+            "support": 1396
+          }
+        },
+        "feature_importance": {
+          "patient_prior_appointments": 0.2629,
+          "hour_of_day": 0.2573,
+          "weekday": 0.2121,
+          "specialty_code": 0.1572,
+          "urgency_ordinal": 0.0722,
+          "is_new_patient": 0.0382
+        }
+      }
+    ],
+    "summary": {
+      "model": {
+        "mae": {
+          "mean": 5.3048,
+          "std": 0.0503
+        },
+        "rmse": {
+          "mean": 7.4857,
+          "std": 0.1729
+        },
+        "bias": {
+          "mean": -1.0254,
+          "std": 0.1534
+        },
+        "r2": {
+          "mean": 0.5261,
+          "std": 0.0086
+        }
+      },
+      "specialty_mean": {
+        "mae": {
+          "mean": 5.6956,
+          "std": 0.088
+        },
+        "rmse": {
+          "mean": 7.4326,
+          "std": 0.1631
+        },
+        "bias": {
+          "mean": 0.7232,
+          "std": 0.2281
+        },
+        "r2": {
+          "mean": 0.5328,
+          "std": 0.0088
+        }
+      }
+    }
+  }
+}

@@ -116,6 +116,15 @@ jobs:
       - name: Demo accounts script runs against seeded data
         run: uv run python scripts/create_demo_users.py
 
+      - name: Train forecasting models
+        run: uv run python scripts/train_models.py
+
+      - name: Model evaluation gate
+        # Rolling-origin cross-validation against the baselines each model must
+        # beat. Exits non-zero if a model fails to clear its baseline, so a
+        # regression cannot be merged while still reporting a number.
+        run: uv run python scripts/evaluate.py
+
   frontend:
     name: Frontend (lint, types, build)
     runs-on: ubuntu-latest

@@ -30,11 +30,16 @@ data/
 *.parquet
 *.pkl
 *.joblib
+# Model binaries are derived: regenerable from committed code + data with a
+# fixed seed, and too large to be useful in review.
 backend/artifacts/
-# Validation-gate plots ARE committed: they are the visual evidence that the
-# synthetic data contains the correlations the generator claims. A reader
-# should be able to check that claim without running anything.
-!backend/reports/*.png
+
+# Reports ARE committed. They are the evidence behind the project's claims --
+# the Phase 1 validation plots and the Phase 3 metrics -- and a reader should be
+# able to check them without running anything.
+!backend/reports/
+!backend/reports/**/*.png
+!backend/reports/**/*.json
 
 # --- Editors / OS ---
 .vscode/
