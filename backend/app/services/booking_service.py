@@ -58,7 +58,7 @@ import logging
 from collections.abc import Awaitable, Callable
 
 from sqlalchemy import ColumnElement, and_, func, or_, select, text
-from sqlalchemy.exc import IntegrityError
+from sqlalchemy.exc import DBAPIError, IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import (
@@ -76,6 +76,16 @@ from app.models import (
 )
 
 log = logging.getLogger(__name__)
+
+# PostgreSQL SQLSTATEs meaning "this transaction lost a contest with another".
+# Both are retryable and both mean the same thing to a patient: somebody else
+# was booking the same slot at the same moment.
+_CONTENTION_SQLSTATES = frozenset(
+    {
+        "40P01",  # deadlock_detected
+        "40001",  # serialization_failure
+    }
+)
 
 
 class BookingError(Exception):
@@ -335,6 +345,39 @@ async def book_appointment(
         if "excl_appointment_doctor_no_overlap" in str(exc.orig):
             raise SlotTakenError(
                 "that slot was just taken for this doctor; please pick another time"
+            ) from exc
+        raise
+    except DBAPIError as exc:
+        # DEADLOCK, and it is a lost race rather than a server fault.
+        #
+        # Found by CI, not locally: it depends on two transactions reaching the
+        # insert close enough together, which local timing happened to avoid.
+        #
+        # An EXCLUDE constraint does not reject the second writer immediately.
+        # PostgreSQL inserts speculatively and makes the conflicting transaction
+        # WAIT to see whether the first commits or aborts. When two transactions
+        # each claim the same slot at the same instant, each ends up waiting on
+        # the other and the deadlock detector aborts one:
+        #
+        #     Process 213 waits for ShareLock on transaction 833;
+        #       blocked by process 214.
+        #     Process 214 waits for ShareLock on transaction 832;
+        #       blocked by process 213.
+        #
+        # Semantically this is identical to losing the race: two people wanted
+        # one slot and one did not get it. Surfacing it as a 500 would be wrong
+        # twice over -- it is not a bug, and it tells the client to give up on
+        # something a retry would resolve.
+        #
+        # 40001 (serialization_failure) is included for the same reason: it is
+        # the other way PostgreSQL reports "your transaction lost a contest".
+        await db.rollback()
+        sqlstate = getattr(getattr(exc, "orig", None), "sqlstate", None) or getattr(
+            exc.orig, "pgcode", None
+        )
+        if sqlstate in _CONTENTION_SQLSTATES:
+            raise SlotTakenError(
+                "that slot is being booked by someone else right now; please try again"
             ) from exc
         raise
 

@@ -32,6 +32,7 @@ import datetime as dt
 
 import pytest
 from sqlalchemy import func, select, text
+from sqlalchemy.exc import DBAPIError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import Appointment, Availability, Clinic, Doctor, Patient, Room, Specialty, Weekday
@@ -126,6 +127,16 @@ async def test_concurrent_booking_same_slot_only_one_wins(
     Both transactions pass their pre-checks (the slot genuinely is free when
     each looks), then both insert. The database rejects the second. Without the
     constraint, both would commit and the doctor would be double-booked.
+
+    The loser can be rejected two ways, and both count as losing the race:
+
+    * the exclusion constraint rejects the conflicting row outright, or
+    * PostgreSQL, having inserted speculatively and made each transaction wait
+      on the other, aborts one as a DEADLOCK.
+
+    The second only appears when the two inserts land close enough together, so
+    it showed up in CI rather than locally. `booking_service` maps both to
+    SlotTakenError, because to the patient they are the same event.
     """
     setup_session = committing_sessions()
     ids = await _seed(setup_session)
@@ -390,3 +401,50 @@ async def test_locks_on_different_rooms_do_not_serialise(
         attempt(ids["patients"][1], ids["doctor_b"], second_room.id),
     )
     assert results == ["booked", "booked"], results
+
+
+async def test_a_deadlock_is_reported_as_a_lost_race_not_a_server_error(
+    committing_sessions,
+) -> None:
+    """The deadlock branch, forced rather than waited for.
+
+    CI hit a real deadlock here; local timing did not. Relying on the race to
+    reproduce it would leave the handler untested most runs, so this injects the
+    exact error PostgreSQL raises and asserts the mapping.
+
+    Semantically a deadlock on this path IS a lost race: two people wanted one
+    slot and one did not get it. It must surface as SlotTakenError -> 409, not
+    as a 500 telling the client to give up on something a retry would fix.
+    """
+    setup_session = committing_sessions()
+    ids = await _seed(setup_session)
+
+    session = committing_sessions()
+
+    class _DeadlockError(Exception):
+        sqlstate = "40P01"
+
+    original_flush = session.flush
+    calls = {"n": 0}
+
+    async def flush_raising_deadlock(*args, **kwargs):
+        calls["n"] += 1
+        # Only the INSERT flush is hijacked; the fixture setup flushes first.
+        if calls["n"] >= 1:
+            raise DBAPIError("INSERT", {}, _DeadlockError())
+        return await original_flush(*args, **kwargs)
+
+    session.flush = flush_raising_deadlock  # type: ignore[method-assign]
+
+    with pytest.raises(booking_service.SlotTakenError, match="booked by someone else"):
+        await booking_service.book_appointment(
+            session,
+            clinic_id=ids["clinic_id"],
+            doctor_id=ids["doctor_a"],
+            patient_id=ids["patients"][0],
+            specialty_id=ids["specialty_id"],
+            appointment_date=RACE_DATE,
+            start_time=SLOT_START,
+            duration_minutes=30,
+        )
+    await session.close()

@@ -366,6 +366,34 @@ Two things worth understanding about that lock:
   guards against "fixing" the race with a coarse lock that would serialise the
   entire clinic.
 
+### A third outcome, found by CI in Phase 4
+
+Two concurrent bookings for the same slot do not always end with the exclusion
+constraint rejecting one. Sometimes PostgreSQL **deadlocks**:
+
+```
+Process 213 waits for ShareLock on transaction 833; blocked by process 214.
+Process 214 waits for ShareLock on transaction 832; blocked by process 213.
+```
+
+An `EXCLUDE` constraint does not reject the second writer immediately. The row
+is inserted *speculatively* and the conflicting transaction is made to WAIT to
+see whether the first commits or aborts. When both transactions claim the same
+slot at the same instant, each waits on the other and the deadlock detector
+aborts one.
+
+Semantically this is identical to losing the race — two people wanted one slot
+and one did not get it — so the booking service now maps SQLSTATE `40P01`
+(deadlock_detected) and `40001` (serialization_failure) to the same
+`SlotTakenError`, and therefore the same 409. Reporting a 500 would be wrong
+twice: it is not a bug, and it tells the client to give up on something a retry
+resolves.
+
+It surfaced in CI rather than locally, because it needs the two inserts to land
+close enough together and local timing happened to avoid it. The regression test
+injects the error directly rather than waiting for the race, so the handler is
+covered on every run instead of on lucky ones.
+
 ### Why not just use SERIALIZABLE?
 
 It would work. `SERIALIZABLE` isolation makes PostgreSQL detect the dependency
