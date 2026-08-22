@@ -32,8 +32,8 @@ Forecast  →  Optimize  →  Agent orchestrates & explains  →  Simulate "what
 | **1 — Database** | Models, constraints, EXCLUDE, trigger, synthetic data + validation gate | ✅ **Done & verified** |
 | **2 — Core app** | Auth + 3-role RBAC, CRUD, calendar UI, concurrency-safe booking | ✅ **Done & verified** |
 | **3 — Forecasting** | No-show classifier, demand & duration models, eval harness | ✅ **Done & verified** |
-| 4 — Optimizer | CP-SAT model, greedy baseline, benchmark | ⬜ Next |
-| 5 — Agent | Tool schemas, tool-calling loop, grounded explanations | ⬜ |
+| **4 — Optimizer** | CP-SAT model, greedy baseline, benchmark | ✅ **Done & verified** |
+| 5 — Agent | Tool schemas, tool-calling loop, grounded explanations | ⬜ Next |
 | 6 — Simulation | What-if endpoint, before/after diff UI | ⬜ |
 | 7 — Rigor | Load test, concurrency writeup, demo fallback, full README | ⬜ |
 | 8 — Deploy | Managed Postgres, backend host, Vercel frontend | ⬜ |
@@ -160,6 +160,10 @@ why it was built that way, and the underlying concepts.
   leakage and the three ways to get it wrong, rolling-origin validation, the
   missing-zeros trap, why baselines are the result, choosing an operating point
   from cost, calibration vs ranking, and **shipping the simpler model when it wins**
+- [Phase 4 — Optimizer](./docs/phase-4-optimizer.md) — the CP-SAT model, why
+  mandatory breaks came free from the Phase 1 schema, every objective weight
+  defended, overbooking versus the database constraint, **the 0% benchmark and
+  what it actually meant**, and the waiting-time regression the simulator caught
 - [Design system](./docs/design-system.md) — palette, typography, tokens
 - [Glossary](./docs/glossary.md) — every term in the project, defined
 
@@ -196,6 +200,8 @@ make explain      # EXPLAIN ANALYZE the composite index, with and without
 make demo-users   # one login per role, linked to the busiest seeded records
 make train        # train the no-show, demand and duration models
 make eval         # THE MODEL GATE - rolling-origin CV against the baselines
+make ceiling      # how good COULD the no-show model be? Bayes ceiling + ablation
+make benchmark    # optimizer vs FCFS baseline, with a load sweep
 ```
 
 ### Synthetic data
@@ -364,6 +370,64 @@ scores produces a number with no meaning.
 Prediction endpoints are **staff-only**: a patient cannot read their own no-show
 score. It is a self-fulfilling nudge and a fairness problem, and there is a test
 so the decision cannot erode.
+
+---
+
+## Optimizer (Phase 4)
+
+CP-SAT re-times a clinic-day against a competent FCFS baseline. Both schedulers
+share one scorer, so the benchmark compares two *schedules*, never two
+implementations of a metric.
+
+**Mandatory breaks needed no modelling.** Phase 1 stores availability as
+separate windows either side of lunch; requiring each appointment to fit inside
+*one* window means it can never span the gap. That is what a good schema buys
+three phases later.
+
+### The result, and the two things it took to make it honest
+
+The first benchmark returned **0.00% improvement** — identical schedules. The
+cause was not the optimizer: at **17% utilisation with 4.2 appointments per
+doctor**, only 4 of 67 appointments conflicted at their requested times. There
+was no scheduling problem to solve.
+
+So the question changed from *"what is the improvement?"* to *"at what load does
+this start to matter?"*:
+
+| utilisation | delay | idle | objective | simulated wait | days better |
+|---|---|---|---|---|---|
+| **11.0%** *(as it runs)* | +0.36% | +0.18% | +1.21% | −6.11% | 14/45 |
+| 18.2% | +0.28% | +0.63% | +8.09% | −7.23% | 25/43 |
+| 24.1% | +1.12% | +2.02% | **+10.69%** | −5.73% | 27/41 |
+| 29.5% | +3.50% | +5.45% | **+13.02%** | −11.02% | 24/30 |
+| 35.0% | +0.01% | +12.37% | +11.21% | −21.65% | 12/13 |
+
+**Up to 13% objective reduction — but only above ~18% utilisation, and at a
+measured cost in patient waiting time.** Solved to proven optimality in a median
+of **22 ms** (p90 33 ms) on instances up to 67 appointments.
+
+### The regression an out-of-sample simulator caught
+
+The optimizer is not trained on waiting-room time, so a Monte-Carlo simulator
+evaluates it independently. It found the optimiser making patient waiting **up
+to 22% worse** while beating the baseline on everything it *was* scored on:
+minimising idle packs each doctor into a tight block, and tight blocks queue when
+a consultation overruns.
+
+A weight sweep isolated the cause and showed the trade is controllable, so the
+objective is exposed as a named policy rather than five tunable floats —
+`balanced` (clinician utilisation) or `patient_first` (waiting-room time). Which
+to use is a clinic decision, not a technical one.
+
+### Overbooking, without bypassing the database
+
+Phase 1's `EXCLUDE` constraint makes two overlapping appointments
+*unrepresentable*. The way through is architectural: the constraint is on the
+transactional record, while `analytics.schedule_entry` — the **proposal** — has
+none. So the optimizer may *recommend* overbooking, capped and gated on expected
+attendance ≤ 1.0, and applying such a plan is refused with an explanation rather
+than an `IntegrityError`. A scheduler should be able to argue for a policy
+change without being able to enact one.
 
 ---
 

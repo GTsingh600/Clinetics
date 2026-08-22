@@ -1,0 +1,4152 @@
+{
+  "clinic_id": 1,
+  "window": {
+    "from": "2026-06-22",
+    "to": "2026-08-21"
+  },
+  "policies": {
+    "no_slack": {
+      "slack_fraction": 0.0,
+      "as_is": {
+        "days": 40,
+        "mean_utilisation_pct": 11.0,
+        "mean_appointments_per_day": 38.0,
+        "delay_reduction_pct": {
+          "mean": 0.4,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 5.0,
+          "min": -7.14,
+          "max": 10.0
+        },
+        "idle_reduction_pct": {
+          "mean": 0.16,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.98,
+          "min": -0.76,
+          "max": 2.4
+        },
+        "overtime_reduction_pct": {
+          "mean": 0.0,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "objective_reduction_pct": {
+          "mean": 1.01,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 3.47,
+          "min": 0.0,
+          "max": 8.45
+        },
+        "simulated_wait_reduction_pct": {
+          "mean": -7.31,
+          "median": 0.0,
+          "p10": -33.33,
+          "p90": 1.16,
+          "min": -81.51,
+          "max": 17.01
+        },
+        "days_optimizer_strictly_better": 13,
+        "days_identical": 27,
+        "days_worse": 0,
+        "solve_time_ms": {
+          "mean": 22.38,
+          "median": 21.0,
+          "p10": 16.0,
+          "p90": 30.0,
+          "min": 13.0,
+          "max": 51.0
+        }
+      },
+      "load_sweep": [
+        {
+          "days": 45,
+          "mean_utilisation_pct": 11.0,
+          "mean_appointments_per_day": 37.8,
+          "delay_reduction_pct": {
+            "mean": 0.36,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 5.88,
+            "min": -8.33,
+            "max": 12.5
+          },
+          "idle_reduction_pct": {
+            "mean": 0.18,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 1.12,
+            "min": -0.61,
+            "max": 2.49
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 1.21,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 3.79,
+            "min": 0.0,
+            "max": 16.59
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -6.11,
+            "median": 0.0,
+            "p10": -32.93,
+            "p90": 1.32,
+            "min": -78.26,
+            "max": 12.12
+          },
+          "days_optimizer_strictly_better": 14,
+          "days_identical": 31,
+          "days_worse": 0,
+          "solve_time_ms": {
+            "mean": 21.71,
+            "median": 21.0,
+            "p10": 16.0,
+            "p90": 29.0,
+            "min": 13.0,
+            "max": 44.0
+          },
+          "compression_factor": 1.0
+        },
+        {
+          "days": 43,
+          "mean_utilisation_pct": 18.2,
+          "mean_appointments_per_day": 37.7,
+          "delay_reduction_pct": {
+            "mean": 0.28,
+            "median": 0.0,
+            "p10": -8.7,
+            "p90": 5.56,
+            "min": -25.0,
+            "max": 34.09
+          },
+          "idle_reduction_pct": {
+            "mean": 0.63,
+            "median": 0.0,
+            "p10": -0.99,
+            "p90": 2.99,
+            "min": -5.71,
+            "max": 12.81
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 8.09,
+            "median": 2.42,
+            "p10": 0.0,
+            "p90": 26.57,
+            "min": -1.69,
+            "max": 59.05
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -7.23,
+            "median": 0.0,
+            "p10": -36.49,
+            "p90": 9.56,
+            "min": -93.85,
+            "max": 29.58
+          },
+          "days_optimizer_strictly_better": 25,
+          "days_identical": 15,
+          "days_worse": 3,
+          "solve_time_ms": {
+            "mean": 48.0,
+            "median": 22.0,
+            "p10": 14.0,
+            "p90": 81.0,
+            "min": 12.0,
+            "max": 673.0
+          },
+          "compression_factor": 0.6
+        },
+        {
+          "days": 41,
+          "mean_utilisation_pct": 24.1,
+          "mean_appointments_per_day": 37.3,
+          "delay_reduction_pct": {
+            "mean": 1.12,
+            "median": 0.0,
+            "p10": -5.56,
+            "p90": 7.41,
+            "min": -15.38,
+            "max": 32.2
+          },
+          "idle_reduction_pct": {
+            "mean": 2.02,
+            "median": 0.0,
+            "p10": -3.03,
+            "p90": 10.98,
+            "min": -12.3,
+            "max": 18.15
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 10.69,
+            "median": 5.0,
+            "p10": 0.0,
+            "p90": 32.02,
+            "min": -0.33,
+            "max": 62.11
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -5.73,
+            "median": -1.4,
+            "p10": -22.41,
+            "p90": 6.27,
+            "min": -59.82,
+            "max": 36.65
+          },
+          "days_optimizer_strictly_better": 27,
+          "days_identical": 13,
+          "days_worse": 1,
+          "solve_time_ms": {
+            "mean": 450.78,
+            "median": 24.0,
+            "p10": 14.0,
+            "p90": 893.0,
+            "min": 11.0,
+            "max": 8005.0
+          },
+          "compression_factor": 0.45
+        },
+        {
+          "days": 30,
+          "mean_utilisation_pct": 29.5,
+          "mean_appointments_per_day": 35.2,
+          "delay_reduction_pct": {
+            "mean": 3.5,
+            "median": 0.71,
+            "p10": 0.0,
+            "p90": 18.87,
+            "min": -25.0,
+            "max": 36.73
+          },
+          "idle_reduction_pct": {
+            "mean": 5.45,
+            "median": 3.06,
+            "p10": 0.0,
+            "p90": 13.89,
+            "min": -2.94,
+            "max": 31.33
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 13.02,
+            "median": 7.45,
+            "p10": 0.0,
+            "p90": 33.84,
+            "min": 0.0,
+            "max": 61.07
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -11.02,
+            "median": -7.35,
+            "p10": -31.32,
+            "p90": 4.76,
+            "min": -53.74,
+            "max": 17.49
+          },
+          "days_optimizer_strictly_better": 24,
+          "days_identical": 6,
+          "days_worse": 0,
+          "solve_time_ms": {
+            "mean": 415.23,
+            "median": 39.5,
+            "p10": 15.0,
+            "p90": 914.0,
+            "min": 13.0,
+            "max": 8004.0
+          },
+          "compression_factor": 0.35
+        },
+        {
+          "days": 13,
+          "mean_utilisation_pct": 35.0,
+          "mean_appointments_per_day": 34.7,
+          "delay_reduction_pct": {
+            "mean": 0.01,
+            "median": 0.0,
+            "p10": -5.17,
+            "p90": 3.26,
+            "min": -7.14,
+            "max": 8.25
+          },
+          "idle_reduction_pct": {
+            "mean": 12.37,
+            "median": 4.23,
+            "p10": -1.05,
+            "p90": 32.81,
+            "min": -3.33,
+            "max": 44.66
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 11.21,
+            "median": 9.39,
+            "p10": 0.08,
+            "p90": 20.59,
+            "min": 0.0,
+            "max": 32.93
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -21.65,
+            "median": -11.34,
+            "p10": -57.94,
+            "p90": 0.26,
+            "min": -75.79,
+            "max": 13.31
+          },
+          "days_optimizer_strictly_better": 12,
+          "days_identical": 1,
+          "days_worse": 0,
+          "solve_time_ms": {
+            "mean": 786.77,
+            "median": 120.0,
+            "p10": 17.0,
+            "p90": 610.0,
+            "min": 16.0,
+            "max": 8005.0
+          },
+          "compression_factor": 0.28
+        }
+      ],
+      "per_day_as_is": [
+        {
+          "date": "2026-06-22",
+          "appointments": 43,
+          "utilisation_pct": 10.6,
+          "baseline": {
+            "total_delay_minutes": 450,
+            "total_idle_minutes": 786,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 390.0,
+            "expected_idle_minutes": 51.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.47,
+            "max_delay_minutes": 75,
+            "objective": 1468.8
+          },
+          "optimized": {
+            "total_delay_minutes": 450,
+            "total_idle_minutes": 786,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 390.0,
+            "expected_idle_minutes": 51.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.47,
+            "max_delay_minutes": 75,
+            "objective": 1468.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.123,
+          "simulated_wait_after": 0.123,
+          "solve_time_ms": 51,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-24",
+          "appointments": 36,
+          "utilisation_pct": 12.7,
+          "baseline": {
+            "total_delay_minutes": 195,
+            "total_idle_minutes": 791,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 46.4,
+            "overbooked_slots": 0,
+            "scheduled_count": 36,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.42,
+            "max_delay_minutes": 75,
+            "objective": 827.8
+          },
+          "optimized": {
+            "total_delay_minutes": 195,
+            "total_idle_minutes": 791,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 46.4,
+            "overbooked_slots": 0,
+            "scheduled_count": 36,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.42,
+            "max_delay_minutes": 75,
+            "objective": 827.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.081,
+          "simulated_wait_after": 0.081,
+          "solve_time_ms": 21,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-25",
+          "appointments": 47,
+          "utilisation_pct": 12.5,
+          "baseline": {
+            "total_delay_minutes": 420,
+            "total_idle_minutes": 991,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 63.68,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.94,
+            "max_delay_minutes": 90,
+            "objective": 1212.8
+          },
+          "optimized": {
+            "total_delay_minutes": 420,
+            "total_idle_minutes": 991,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 63.68,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.94,
+            "max_delay_minutes": 90,
+            "objective": 1212.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.122,
+          "simulated_wait_after": 0.122,
+          "solve_time_ms": 25,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-29",
+          "appointments": 47,
+          "utilisation_pct": 15.5,
+          "baseline": {
+            "total_delay_minutes": 585,
+            "total_idle_minutes": 1583,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 81.07,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.45,
+            "max_delay_minutes": 75,
+            "objective": 2151.4
+          },
+          "optimized": {
+            "total_delay_minutes": 585,
+            "total_idle_minutes": 1583,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 81.07,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.45,
+            "max_delay_minutes": 90,
+            "objective": 2151.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.114,
+          "simulated_wait_after": 0.108,
+          "solve_time_ms": 24,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-30",
+          "appointments": 42,
+          "utilisation_pct": 11.4,
+          "baseline": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 1196,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 645.0,
+            "expected_idle_minutes": 51.43,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.29,
+            "max_delay_minutes": 75,
+            "objective": 1991.8
+          },
+          "optimized": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 1196,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 645.0,
+            "expected_idle_minutes": 49.89,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.29,
+            "max_delay_minutes": 75,
+            "objective": 1991.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 2.99,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.189,
+          "simulated_wait_after": 0.19,
+          "solve_time_ms": 22,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-01",
+          "appointments": 30,
+          "utilisation_pct": 8.9,
+          "baseline": {
+            "total_delay_minutes": 165,
+            "total_idle_minutes": 552,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 31.88,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.5,
+            "max_delay_minutes": 60,
+            "objective": 606.6
+          },
+          "optimized": {
+            "total_delay_minutes": 165,
+            "total_idle_minutes": 552,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 31.88,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.5,
+            "max_delay_minutes": 60,
+            "objective": 606.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.142,
+          "simulated_wait_after": 0.142,
+          "solve_time_ms": 13,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-03",
+          "appointments": 38,
+          "utilisation_pct": 11.3,
+          "baseline": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 877,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 64.17,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.32,
+            "max_delay_minutes": 75,
+            "objective": 941.6
+          },
+          "optimized": {
+            "total_delay_minutes": 225,
+            "total_idle_minutes": 863,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 66.28,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.92,
+            "max_delay_minutes": 120,
+            "objective": 915.4
+          },
+          "improvement": {
+            "delay_pct": 6.25,
+            "idle_pct": 1.6,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -3.29,
+            "objective_pct": 2.78,
+            "mean_delay_pct": 6.25
+          },
+          "simulated_wait_before": 0.091,
+          "simulated_wait_after": 0.123,
+          "solve_time_ms": 24,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-06",
+          "appointments": 45,
+          "utilisation_pct": 13.7,
+          "baseline": {
+            "total_delay_minutes": 315,
+            "total_idle_minutes": 1233,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 240.0,
+            "expected_idle_minutes": 72.02,
+            "overbooked_slots": 0,
+            "scheduled_count": 45,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.0,
+            "max_delay_minutes": 60,
+            "objective": 1541.4
+          },
+          "optimized": {
+            "total_delay_minutes": 330,
+            "total_idle_minutes": 1233,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 210.0,
+            "expected_idle_minutes": 72.02,
+            "overbooked_slots": 0,
+            "scheduled_count": 45,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.33,
+            "max_delay_minutes": 90,
+            "objective": 1526.4
+          },
+          "improvement": {
+            "delay_pct": -4.76,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.97,
+            "mean_delay_pct": -4.76
+          },
+          "simulated_wait_before": 0.347,
+          "simulated_wait_after": 0.332,
+          "solve_time_ms": 29,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-07",
+          "appointments": 54,
+          "utilisation_pct": 15.1,
+          "baseline": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 1373,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 79.35,
+            "overbooked_slots": 0,
+            "scheduled_count": 54,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.94,
+            "max_delay_minutes": 75,
+            "objective": 1473.4
+          },
+          "optimized": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 1373,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 79.35,
+            "overbooked_slots": 0,
+            "scheduled_count": 54,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.94,
+            "max_delay_minutes": 75,
+            "objective": 1473.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.101,
+          "simulated_wait_after": 0.101,
+          "solve_time_ms": 30,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-08",
+          "appointments": 28,
+          "utilisation_pct": 8.7,
+          "baseline": {
+            "total_delay_minutes": 45,
+            "total_idle_minutes": 657,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 33.51,
+            "overbooked_slots": 0,
+            "scheduled_count": 28,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 1.61,
+            "max_delay_minutes": 30,
+            "objective": 570.6
+          },
+          "optimized": {
+            "total_delay_minutes": 45,
+            "total_idle_minutes": 657,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 33.51,
+            "overbooked_slots": 0,
+            "scheduled_count": 28,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 1.61,
+            "max_delay_minutes": 30,
+            "objective": 570.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.096,
+          "simulated_wait_after": 0.096,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-09",
+          "appointments": 31,
+          "utilisation_pct": 9.3,
+          "baseline": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 844,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 210.0,
+            "expected_idle_minutes": 31.01,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.74,
+            "max_delay_minutes": 90,
+            "objective": 1125.2
+          },
+          "optimized": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 844,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 210.0,
+            "expected_idle_minutes": 31.01,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.74,
+            "max_delay_minutes": 90,
+            "objective": 1125.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.024,
+          "simulated_wait_after": 0.024,
+          "solve_time_ms": 19,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-10",
+          "appointments": 33,
+          "utilisation_pct": 10.3,
+          "baseline": {
+            "total_delay_minutes": 255,
+            "total_idle_minutes": 924,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 49.87,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.73,
+            "max_delay_minutes": 90,
+            "objective": 994.2
+          },
+          "optimized": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 924,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 49.87,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.27,
+            "max_delay_minutes": 90,
+            "objective": 979.2
+          },
+          "improvement": {
+            "delay_pct": 5.88,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 1.51,
+            "mean_delay_pct": 5.88
+          },
+          "simulated_wait_before": 0.112,
+          "simulated_wait_after": 0.134,
+          "solve_time_ms": 23,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-13",
+          "appointments": 43,
+          "utilisation_pct": 11.4,
+          "baseline": {
+            "total_delay_minutes": 120,
+            "total_idle_minutes": 1029,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 66.32,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 2.79,
+            "max_delay_minutes": 60,
+            "objective": 973.2
+          },
+          "optimized": {
+            "total_delay_minutes": 120,
+            "total_idle_minutes": 1029,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 66.32,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 2.79,
+            "max_delay_minutes": 60,
+            "objective": 973.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.108,
+          "simulated_wait_after": 0.108,
+          "solve_time_ms": 21,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-14",
+          "appointments": 31,
+          "utilisation_pct": 10.7,
+          "baseline": {
+            "total_delay_minutes": 300,
+            "total_idle_minutes": 584,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 37.6,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.68,
+            "max_delay_minutes": 75,
+            "objective": 767.2
+          },
+          "optimized": {
+            "total_delay_minutes": 270,
+            "total_idle_minutes": 570,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 36.8,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.71,
+            "max_delay_minutes": 75,
+            "objective": 726.0
+          },
+          "improvement": {
+            "delay_pct": 10.0,
+            "idle_pct": 2.4,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 2.14,
+            "objective_pct": 5.37,
+            "mean_delay_pct": 10.0
+          },
+          "simulated_wait_before": 0.161,
+          "simulated_wait_after": 0.288,
+          "solve_time_ms": 22,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-15",
+          "appointments": 43,
+          "utilisation_pct": 13.2,
+          "baseline": {
+            "total_delay_minutes": 405,
+            "total_idle_minutes": 788,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 57.25,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.42,
+            "max_delay_minutes": 75,
+            "objective": 1335.4
+          },
+          "optimized": {
+            "total_delay_minutes": 405,
+            "total_idle_minutes": 788,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 57.25,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.42,
+            "max_delay_minutes": 75,
+            "objective": 1335.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.295,
+          "simulated_wait_after": 0.295,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-16",
+          "appointments": 31,
+          "utilisation_pct": 10.0,
+          "baseline": {
+            "total_delay_minutes": 315,
+            "total_idle_minutes": 693,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 28.58,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.16,
+            "max_delay_minutes": 75,
+            "objective": 869.4
+          },
+          "optimized": {
+            "total_delay_minutes": 300,
+            "total_idle_minutes": 679,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 29.27,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.68,
+            "max_delay_minutes": 75,
+            "objective": 843.2
+          },
+          "improvement": {
+            "delay_pct": 4.76,
+            "idle_pct": 2.02,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -2.41,
+            "objective_pct": 3.01,
+            "mean_delay_pct": 4.76
+          },
+          "simulated_wait_before": 0.097,
+          "simulated_wait_after": 0.143,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-17",
+          "appointments": 33,
+          "utilisation_pct": 9.3,
+          "baseline": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 703,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 255.0,
+            "expected_idle_minutes": 46.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.36,
+            "max_delay_minutes": 60,
+            "objective": 1027.4
+          },
+          "optimized": {
+            "total_delay_minutes": 225,
+            "total_idle_minutes": 707,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 150.0,
+            "expected_idle_minutes": 47.09,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.82,
+            "max_delay_minutes": 75,
+            "objective": 940.6
+          },
+          "improvement": {
+            "delay_pct": -7.14,
+            "idle_pct": -0.57,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.65,
+            "objective_pct": 8.45,
+            "mean_delay_pct": -7.14
+          },
+          "simulated_wait_before": 0.147,
+          "simulated_wait_after": 0.173,
+          "solve_time_ms": 24,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-20",
+          "appointments": 46,
+          "utilisation_pct": 12.6,
+          "baseline": {
+            "total_delay_minutes": 465,
+            "total_idle_minutes": 1405,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 80.01,
+            "overbooked_slots": 0,
+            "scheduled_count": 46,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.11,
+            "max_delay_minutes": 75,
+            "objective": 1889.0
+          },
+          "optimized": {
+            "total_delay_minutes": 465,
+            "total_idle_minutes": 1405,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 240.0,
+            "expected_idle_minutes": 77.67,
+            "overbooked_slots": 0,
+            "scheduled_count": 46,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.11,
+            "max_delay_minutes": 105,
+            "objective": 1829.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 2.93,
+            "objective_pct": 3.18,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.172,
+          "simulated_wait_after": 0.17,
+          "solve_time_ms": 27,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-21",
+          "appointments": 32,
+          "utilisation_pct": 9.0,
+          "baseline": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 858,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 29.99,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.56,
+            "max_delay_minutes": 75,
+            "objective": 896.4
+          },
+          "optimized": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 858,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 29.99,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.56,
+            "max_delay_minutes": 75,
+            "objective": 896.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.021,
+          "simulated_wait_after": 0.021,
+          "solve_time_ms": 19,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-22",
+          "appointments": 37,
+          "utilisation_pct": 9.5,
+          "baseline": {
+            "total_delay_minutes": 315,
+            "total_idle_minutes": 1035,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 39.43,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.51,
+            "max_delay_minutes": 75,
+            "objective": 1233.0
+          },
+          "optimized": {
+            "total_delay_minutes": 315,
+            "total_idle_minutes": 1035,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 39.43,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.51,
+            "max_delay_minutes": 75,
+            "objective": 1233.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.013,
+          "simulated_wait_after": 0.013,
+          "solve_time_ms": 20,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-24",
+          "appointments": 38,
+          "utilisation_pct": 11.0,
+          "baseline": {
+            "total_delay_minutes": 60,
+            "total_idle_minutes": 1091,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 65.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 1.58,
+            "max_delay_minutes": 60,
+            "objective": 932.8
+          },
+          "optimized": {
+            "total_delay_minutes": 60,
+            "total_idle_minutes": 1091,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 65.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 1.58,
+            "max_delay_minutes": 60,
+            "objective": 932.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.058,
+          "simulated_wait_after": 0.058,
+          "solve_time_ms": 20,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-27",
+          "appointments": 49,
+          "utilisation_pct": 14.8,
+          "baseline": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 1056,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 81.07,
+            "overbooked_slots": 0,
+            "scheduled_count": 49,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.65,
+            "max_delay_minutes": 75,
+            "objective": 1309.8
+          },
+          "optimized": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 1064,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 83.03,
+            "overbooked_slots": 0,
+            "scheduled_count": 49,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.96,
+            "max_delay_minutes": 120,
+            "objective": 1271.2
+          },
+          "improvement": {
+            "delay_pct": -4.0,
+            "idle_pct": -0.76,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -2.42,
+            "objective_pct": 2.95,
+            "mean_delay_pct": -4.0
+          },
+          "simulated_wait_before": 0.147,
+          "simulated_wait_after": 0.122,
+          "solve_time_ms": 28,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-28",
+          "appointments": 25,
+          "utilisation_pct": 8.3,
+          "baseline": {
+            "total_delay_minutes": 90,
+            "total_idle_minutes": 820,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 21.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 25,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.6,
+            "max_delay_minutes": 60,
+            "objective": 746.0
+          },
+          "optimized": {
+            "total_delay_minutes": 90,
+            "total_idle_minutes": 820,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 21.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 25,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.6,
+            "max_delay_minutes": 60,
+            "objective": 746.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.193,
+          "simulated_wait_after": 0.193,
+          "solve_time_ms": 15,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-29",
+          "appointments": 37,
+          "utilisation_pct": 9.3,
+          "baseline": {
+            "total_delay_minutes": 330,
+            "total_idle_minutes": 859,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 40.9,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.92,
+            "max_delay_minutes": 90,
+            "objective": 1107.2
+          },
+          "optimized": {
+            "total_delay_minutes": 330,
+            "total_idle_minutes": 859,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 40.9,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.92,
+            "max_delay_minutes": 90,
+            "objective": 1107.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.087,
+          "simulated_wait_after": 0.087,
+          "solve_time_ms": 22,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-31",
+          "appointments": 27,
+          "utilisation_pct": 7.7,
+          "baseline": {
+            "total_delay_minutes": 165,
+            "total_idle_minutes": 496,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 27.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 27,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.11,
+            "max_delay_minutes": 60,
+            "objective": 681.8
+          },
+          "optimized": {
+            "total_delay_minutes": 165,
+            "total_idle_minutes": 496,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 27.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 27,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.11,
+            "max_delay_minutes": 60,
+            "objective": 681.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.198,
+          "simulated_wait_after": 0.198,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-03",
+          "appointments": 51,
+          "utilisation_pct": 13.8,
+          "baseline": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 1471,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 315.0,
+            "expected_idle_minutes": 87.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 51,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.35,
+            "max_delay_minutes": 75,
+            "objective": 1866.8
+          },
+          "optimized": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 1471,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 315.0,
+            "expected_idle_minutes": 87.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 51,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.35,
+            "max_delay_minutes": 75,
+            "objective": 1866.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.145,
+          "simulated_wait_after": 0.145,
+          "solve_time_ms": 31,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-04",
+          "appointments": 35,
+          "utilisation_pct": 11.4,
+          "baseline": {
+            "total_delay_minutes": 255,
+            "total_idle_minutes": 1147,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 36.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 35,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.29,
+            "max_delay_minutes": 60,
+            "objective": 1262.6
+          },
+          "optimized": {
+            "total_delay_minutes": 255,
+            "total_idle_minutes": 1147,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 36.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 35,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.29,
+            "max_delay_minutes": 60,
+            "objective": 1262.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.113,
+          "simulated_wait_after": 0.113,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-05",
+          "appointments": 31,
+          "utilisation_pct": 8.7,
+          "baseline": {
+            "total_delay_minutes": 105,
+            "total_idle_minutes": 515,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 26.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.39,
+            "max_delay_minutes": 60,
+            "objective": 577.0
+          },
+          "optimized": {
+            "total_delay_minutes": 105,
+            "total_idle_minutes": 515,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 26.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.39,
+            "max_delay_minutes": 60,
+            "objective": 577.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.035,
+          "simulated_wait_after": 0.035,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-06",
+          "appointments": 37,
+          "utilisation_pct": 10.8,
+          "baseline": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 1215,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 270.0,
+            "expected_idle_minutes": 36.04,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.49,
+            "max_delay_minutes": 75,
+            "objective": 1482.0
+          },
+          "optimized": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 1215,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 270.0,
+            "expected_idle_minutes": 36.04,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.49,
+            "max_delay_minutes": 75,
+            "objective": 1482.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.056,
+          "simulated_wait_after": 0.056,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-07",
+          "appointments": 29,
+          "utilisation_pct": 8.4,
+          "baseline": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 673,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 360.0,
+            "expected_idle_minutes": 24.69,
+            "overbooked_slots": 0,
+            "scheduled_count": 29,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.28,
+            "max_delay_minutes": 75,
+            "objective": 1138.4
+          },
+          "optimized": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 673,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 360.0,
+            "expected_idle_minutes": 24.69,
+            "overbooked_slots": 0,
+            "scheduled_count": 29,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.28,
+            "max_delay_minutes": 75,
+            "objective": 1138.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.066,
+          "simulated_wait_after": 0.066,
+          "solve_time_ms": 13,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-10",
+          "appointments": 50,
+          "utilisation_pct": 13.5,
+          "baseline": {
+            "total_delay_minutes": 465,
+            "total_idle_minutes": 1125,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 420.0,
+            "expected_idle_minutes": 82.34,
+            "overbooked_slots": 0,
+            "scheduled_count": 50,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.3,
+            "max_delay_minutes": 75,
+            "objective": 1785.0
+          },
+          "optimized": {
+            "total_delay_minutes": 465,
+            "total_idle_minutes": 1125,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 315.0,
+            "expected_idle_minutes": 81.47,
+            "overbooked_slots": 0,
+            "scheduled_count": 50,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.3,
+            "max_delay_minutes": 75,
+            "objective": 1680.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 1.06,
+            "objective_pct": 5.88,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.133,
+          "simulated_wait_after": 0.133,
+          "solve_time_ms": 28,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-11",
+          "appointments": 39,
+          "utilisation_pct": 10.3,
+          "baseline": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 689,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 39.68,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.85,
+            "max_delay_minutes": 75,
+            "objective": 896.2
+          },
+          "optimized": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 685,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 39.9,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.85,
+            "max_delay_minutes": 105,
+            "objective": 893.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.58,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.54,
+            "objective_pct": 0.36,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.006,
+          "simulated_wait_after": 0.008,
+          "solve_time_ms": 30,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-12",
+          "appointments": 30,
+          "utilisation_pct": 9.1,
+          "baseline": {
+            "total_delay_minutes": 0,
+            "total_idle_minutes": 1261,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 36.18,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 0.0,
+            "max_delay_minutes": 0,
+            "objective": 1008.8
+          },
+          "optimized": {
+            "total_delay_minutes": 0,
+            "total_idle_minutes": 1261,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 36.18,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 0.0,
+            "max_delay_minutes": 0,
+            "objective": 1008.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.001,
+          "simulated_wait_after": 0.001,
+          "solve_time_ms": 16,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-13",
+          "appointments": 44,
+          "utilisation_pct": 12.3,
+          "baseline": {
+            "total_delay_minutes": 600,
+            "total_idle_minutes": 1127,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 63.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 44,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 13.64,
+            "max_delay_minutes": 90,
+            "objective": 1501.6
+          },
+          "optimized": {
+            "total_delay_minutes": 570,
+            "total_idle_minutes": 1116,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 63.83,
+            "overbooked_slots": 0,
+            "scheduled_count": 44,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.95,
+            "max_delay_minutes": 165,
+            "objective": 1462.8
+          },
+          "improvement": {
+            "delay_pct": 5.0,
+            "idle_pct": 0.98,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.09,
+            "objective_pct": 2.58,
+            "mean_delay_pct": 5.0
+          },
+          "simulated_wait_before": 0.119,
+          "simulated_wait_after": 0.216,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-14",
+          "appointments": 32,
+          "utilisation_pct": 8.7,
+          "baseline": {
+            "total_delay_minutes": 135,
+            "total_idle_minutes": 1123,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 150.0,
+            "expected_idle_minutes": 33.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 4.22,
+            "max_delay_minutes": 60,
+            "objective": 1183.4
+          },
+          "optimized": {
+            "total_delay_minutes": 135,
+            "total_idle_minutes": 1123,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 150.0,
+            "expected_idle_minutes": 33.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 4.22,
+            "max_delay_minutes": 60,
+            "objective": 1183.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.063,
+          "simulated_wait_after": 0.063,
+          "solve_time_ms": 15,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-17",
+          "appointments": 42,
+          "utilisation_pct": 12.1,
+          "baseline": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 1180,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 74.85,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.79,
+            "max_delay_minutes": 90,
+            "objective": 1289.0
+          },
+          "optimized": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 1180,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 74.85,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.79,
+            "max_delay_minutes": 90,
+            "objective": 1289.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.236,
+          "simulated_wait_after": 0.236,
+          "solve_time_ms": 21,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-18",
+          "appointments": 32,
+          "utilisation_pct": 9.0,
+          "baseline": {
+            "total_delay_minutes": 480,
+            "total_idle_minutes": 789,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 615.0,
+            "expected_idle_minutes": 25.53,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 15.0,
+            "max_delay_minutes": 75,
+            "objective": 1726.2
+          },
+          "optimized": {
+            "total_delay_minutes": 480,
+            "total_idle_minutes": 789,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 615.0,
+            "expected_idle_minutes": 27.84,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 15.0,
+            "max_delay_minutes": 90,
+            "objective": 1726.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -9.04,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.116,
+          "simulated_wait_after": 0.117,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-19",
+          "appointments": 42,
+          "utilisation_pct": 12.5,
+          "baseline": {
+            "total_delay_minutes": 525,
+            "total_idle_minutes": 810,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 555.0,
+            "expected_idle_minutes": 43.33,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.5,
+            "max_delay_minutes": 75,
+            "objective": 1728.0
+          },
+          "optimized": {
+            "total_delay_minutes": 525,
+            "total_idle_minutes": 810,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 495.0,
+            "expected_idle_minutes": 42.27,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.5,
+            "max_delay_minutes": 90,
+            "objective": 1668.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 2.44,
+            "objective_pct": 3.47,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.17,
+          "simulated_wait_after": 0.17,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-20",
+          "appointments": 39,
+          "utilisation_pct": 11.7,
+          "baseline": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 958,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 66.35,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.62,
+            "max_delay_minutes": 90,
+            "objective": 1261.4
+          },
+          "optimized": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 957,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 66.63,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.62,
+            "max_delay_minutes": 90,
+            "objective": 1260.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.1,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.43,
+            "objective_pct": 0.06,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.133,
+          "simulated_wait_after": 0.14,
+          "solve_time_ms": 21,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-21",
+          "appointments": 41,
+          "utilisation_pct": 10.6,
+          "baseline": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 1122,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 58.57,
+            "overbooked_slots": 0,
+            "scheduled_count": 41,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.95,
+            "max_delay_minutes": 75,
+            "objective": 1272.6
+          },
+          "optimized": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 1122,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 58.57,
+            "overbooked_slots": 0,
+            "scheduled_count": 41,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.95,
+            "max_delay_minutes": 75,
+            "objective": 1272.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.047,
+          "simulated_wait_after": 0.047,
+          "solve_time_ms": 21,
+          "status": "OPTIMAL"
+        }
+      ]
+    },
+    "with_slack": {
+      "slack_fraction": 0.15,
+      "as_is": {
+        "days": 40,
+        "mean_utilisation_pct": 11.0,
+        "mean_appointments_per_day": 38.0,
+        "delay_reduction_pct": {
+          "mean": -0.42,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0,
+          "min": -11.43,
+          "max": 0.0
+        },
+        "idle_reduction_pct": {
+          "mean": 0.07,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.55,
+          "min": -0.4,
+          "max": 1.3
+        },
+        "overtime_reduction_pct": {
+          "mean": 0.0,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "objective_reduction_pct": {
+          "mean": 1.03,
+          "median": 0.0,
+          "p10": 0.0,
+          "p90": 6.55,
+          "min": 0.0,
+          "max": 10.64
+        },
+        "simulated_wait_reduction_pct": {
+          "mean": -12.26,
+          "median": 0.0,
+          "p10": -22.0,
+          "p90": 0.0,
+          "min": -300.0,
+          "max": 9.52
+        },
+        "days_optimizer_strictly_better": 10,
+        "days_identical": 30,
+        "days_worse": 0,
+        "solve_time_ms": {
+          "mean": 22.9,
+          "median": 21.5,
+          "p10": 15.0,
+          "p90": 33.0,
+          "min": 12.0,
+          "max": 46.0
+        }
+      },
+      "load_sweep": [
+        {
+          "days": 45,
+          "mean_utilisation_pct": 11.0,
+          "mean_appointments_per_day": 37.8,
+          "delay_reduction_pct": {
+            "mean": -1.04,
+            "median": 0.0,
+            "p10": -3.03,
+            "p90": 0.0,
+            "min": -20.0,
+            "max": 0.0
+          },
+          "idle_reduction_pct": {
+            "mean": 0.1,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.1,
+            "min": -0.55,
+            "max": 3.19
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 1.27,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 6.91,
+            "min": 0.0,
+            "max": 13.91
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -8.27,
+            "median": 0.0,
+            "p10": -9.78,
+            "p90": 1.03,
+            "min": -300.0,
+            "max": 37.78
+          },
+          "days_optimizer_strictly_better": 13,
+          "days_identical": 32,
+          "days_worse": 0,
+          "solve_time_ms": {
+            "mean": 25.04,
+            "median": 22.0,
+            "p10": 15.0,
+            "p90": 34.0,
+            "min": 13.0,
+            "max": 100.0
+          },
+          "compression_factor": 1.0
+        },
+        {
+          "days": 43,
+          "mean_utilisation_pct": 18.2,
+          "mean_appointments_per_day": 37.7,
+          "delay_reduction_pct": {
+            "mean": -3.11,
+            "median": 0.0,
+            "p10": -14.29,
+            "p90": 2.33,
+            "min": -47.5,
+            "max": 27.06
+          },
+          "idle_reduction_pct": {
+            "mean": -0.09,
+            "median": 0.0,
+            "p10": -2.41,
+            "p90": 2.4,
+            "min": -6.56,
+            "max": 6.76
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 7.84,
+            "median": 3.69,
+            "p10": -0.07,
+            "p90": 25.46,
+            "min": -14.99,
+            "max": 44.28
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -4.76,
+            "median": 0.0,
+            "p10": -41.03,
+            "p90": 15.96,
+            "min": -100.0,
+            "max": 57.14
+          },
+          "days_optimizer_strictly_better": 31,
+          "days_identical": 7,
+          "days_worse": 5,
+          "solve_time_ms": {
+            "mean": 253.02,
+            "median": 35.0,
+            "p10": 16.0,
+            "p90": 742.0,
+            "min": 12.0,
+            "max": 2585.0
+          },
+          "compression_factor": 0.6
+        },
+        {
+          "days": 38,
+          "mean_utilisation_pct": 23.8,
+          "mean_appointments_per_day": 36.9,
+          "delay_reduction_pct": {
+            "mean": -0.3,
+            "median": 0.0,
+            "p10": -12.77,
+            "p90": 2.27,
+            "min": -20.0,
+            "max": 27.42
+          },
+          "idle_reduction_pct": {
+            "mean": -0.1,
+            "median": 0.0,
+            "p10": -4.49,
+            "p90": 3.38,
+            "min": -8.82,
+            "max": 5.6
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 11.9,
+            "median": 4.54,
+            "p10": -0.28,
+            "p90": 39.91,
+            "min": -19.47,
+            "max": 60.73
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -5.13,
+            "median": -1.3,
+            "p10": -26.0,
+            "p90": 9.43,
+            "min": -76.67,
+            "max": 33.64
+          },
+          "days_optimizer_strictly_better": 25,
+          "days_identical": 8,
+          "days_worse": 5,
+          "solve_time_ms": {
+            "mean": 1030.55,
+            "median": 67.0,
+            "p10": 16.0,
+            "p90": 8004.0,
+            "min": 11.0,
+            "max": 8006.0
+          },
+          "compression_factor": 0.45
+        },
+        {
+          "days": 17,
+          "mean_utilisation_pct": 27.1,
+          "mean_appointments_per_day": 33.0,
+          "delay_reduction_pct": {
+            "mean": 1.55,
+            "median": 0.0,
+            "p10": -9.38,
+            "p90": 16.85,
+            "min": -10.53,
+            "max": 31.25
+          },
+          "idle_reduction_pct": {
+            "mean": 1.62,
+            "median": 0.57,
+            "p10": -0.57,
+            "p90": 6.4,
+            "min": -9.26,
+            "max": 8.47
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 9.72,
+            "median": 5.1,
+            "p10": 0.0,
+            "p90": 35.88,
+            "min": 0.0,
+            "max": 43.04
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -5.05,
+            "median": 0.0,
+            "p10": -28.89,
+            "p90": 5.86,
+            "min": -33.33,
+            "max": 11.49
+          },
+          "days_optimizer_strictly_better": 15,
+          "days_identical": 2,
+          "days_worse": 0,
+          "solve_time_ms": {
+            "mean": 779.88,
+            "median": 65.0,
+            "p10": 15.0,
+            "p90": 2707.0,
+            "min": 13.0,
+            "max": 7442.0
+          },
+          "compression_factor": 0.35
+        },
+        {
+          "days": 7,
+          "mean_utilisation_pct": 32.4,
+          "mean_appointments_per_day": 31.9,
+          "delay_reduction_pct": {
+            "mean": -0.77,
+            "median": 0.0,
+            "p10": -5.05,
+            "p90": 0.52,
+            "min": -5.05,
+            "max": 0.52
+          },
+          "idle_reduction_pct": {
+            "mean": 2.37,
+            "median": 0.93,
+            "p10": -0.8,
+            "p90": 6.8,
+            "min": -0.8,
+            "max": 6.8
+          },
+          "overtime_reduction_pct": {
+            "mean": 0.0,
+            "median": 0.0,
+            "p10": 0.0,
+            "p90": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "objective_reduction_pct": {
+            "mean": 8.59,
+            "median": 9.21,
+            "p10": 0.0,
+            "p90": 17.45,
+            "min": 0.0,
+            "max": 17.45
+          },
+          "simulated_wait_reduction_pct": {
+            "mean": -18.16,
+            "median": -8.06,
+            "p10": -78.38,
+            "p90": 9.62,
+            "min": -78.38,
+            "max": 9.62
+          },
+          "days_optimizer_strictly_better": 6,
+          "days_identical": 1,
+          "days_worse": 0,
+          "solve_time_ms": {
+            "mean": 458.57,
+            "median": 220.0,
+            "p10": 14.0,
+            "p90": 1666.0,
+            "min": 14.0,
+            "max": 1666.0
+          },
+          "compression_factor": 0.28
+        }
+      ],
+      "per_day_as_is": [
+        {
+          "date": "2026-06-22",
+          "appointments": 43,
+          "utilisation_pct": 10.6,
+          "baseline": {
+            "total_delay_minutes": 615,
+            "total_idle_minutes": 760,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 390.0,
+            "expected_idle_minutes": 51.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 14.3,
+            "max_delay_minutes": 90,
+            "objective": 1613.0
+          },
+          "optimized": {
+            "total_delay_minutes": 615,
+            "total_idle_minutes": 760,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 390.0,
+            "expected_idle_minutes": 51.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 14.3,
+            "max_delay_minutes": 150,
+            "objective": 1613.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.082,
+          "simulated_wait_after": 0.085,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-24",
+          "appointments": 36,
+          "utilisation_pct": 12.7,
+          "baseline": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 791,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 46.4,
+            "overbooked_slots": 0,
+            "scheduled_count": 36,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.83,
+            "max_delay_minutes": 75,
+            "objective": 842.8
+          },
+          "optimized": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 791,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 46.4,
+            "overbooked_slots": 0,
+            "scheduled_count": 36,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.83,
+            "max_delay_minutes": 90,
+            "objective": 842.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.031,
+          "simulated_wait_after": 0.032,
+          "solve_time_ms": 20,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-25",
+          "appointments": 47,
+          "utilisation_pct": 12.5,
+          "baseline": {
+            "total_delay_minutes": 435,
+            "total_idle_minutes": 1006,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 63.68,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.26,
+            "max_delay_minutes": 90,
+            "objective": 1269.8
+          },
+          "optimized": {
+            "total_delay_minutes": 435,
+            "total_idle_minutes": 1006,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 63.68,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.26,
+            "max_delay_minutes": 90,
+            "objective": 1269.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.054,
+          "simulated_wait_after": 0.054,
+          "solve_time_ms": 28,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-29",
+          "appointments": 47,
+          "utilisation_pct": 15.5,
+          "baseline": {
+            "total_delay_minutes": 600,
+            "total_idle_minutes": 1598,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 81.07,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.77,
+            "max_delay_minutes": 75,
+            "objective": 2178.4
+          },
+          "optimized": {
+            "total_delay_minutes": 600,
+            "total_idle_minutes": 1598,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 81.07,
+            "overbooked_slots": 0,
+            "scheduled_count": 47,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.77,
+            "max_delay_minutes": 90,
+            "objective": 2178.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.08,
+          "simulated_wait_after": 0.074,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-06-30",
+          "appointments": 42,
+          "utilisation_pct": 11.4,
+          "baseline": {
+            "total_delay_minutes": 435,
+            "total_idle_minutes": 1241,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 645.0,
+            "expected_idle_minutes": 51.43,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.36,
+            "max_delay_minutes": 75,
+            "objective": 2072.8
+          },
+          "optimized": {
+            "total_delay_minutes": 435,
+            "total_idle_minutes": 1241,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 645.0,
+            "expected_idle_minutes": 49.89,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.36,
+            "max_delay_minutes": 75,
+            "objective": 2072.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 2.99,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.087,
+          "simulated_wait_after": 0.087,
+          "solve_time_ms": 29,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-01",
+          "appointments": 30,
+          "utilisation_pct": 8.9,
+          "baseline": {
+            "total_delay_minutes": 195,
+            "total_idle_minutes": 567,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 31.88,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.5,
+            "max_delay_minutes": 75,
+            "objective": 648.6
+          },
+          "optimized": {
+            "total_delay_minutes": 195,
+            "total_idle_minutes": 567,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 31.88,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.5,
+            "max_delay_minutes": 90,
+            "objective": 648.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.019,
+          "simulated_wait_after": 0.019,
+          "solve_time_ms": 13,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-03",
+          "appointments": 38,
+          "utilisation_pct": 11.3,
+          "baseline": {
+            "total_delay_minutes": 270,
+            "total_idle_minutes": 907,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 64.17,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.11,
+            "max_delay_minutes": 75,
+            "objective": 995.6
+          },
+          "optimized": {
+            "total_delay_minutes": 270,
+            "total_idle_minutes": 907,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 64.17,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.11,
+            "max_delay_minutes": 75,
+            "objective": 995.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.03,
+          "simulated_wait_after": 0.03,
+          "solve_time_ms": 38,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-06",
+          "appointments": 45,
+          "utilisation_pct": 13.7,
+          "baseline": {
+            "total_delay_minutes": 480,
+            "total_idle_minutes": 1278,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 330.0,
+            "expected_idle_minutes": 72.02,
+            "overbooked_slots": 0,
+            "scheduled_count": 45,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.67,
+            "max_delay_minutes": 60,
+            "objective": 1832.4
+          },
+          "optimized": {
+            "total_delay_minutes": 480,
+            "total_idle_minutes": 1278,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 210.0,
+            "expected_idle_minutes": 70.81,
+            "overbooked_slots": 0,
+            "scheduled_count": 45,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.67,
+            "max_delay_minutes": 120,
+            "objective": 1712.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 1.68,
+            "objective_pct": 6.55,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.021,
+          "simulated_wait_after": 0.019,
+          "solve_time_ms": 46,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-07",
+          "appointments": 54,
+          "utilisation_pct": 15.1,
+          "baseline": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 1373,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 79.35,
+            "overbooked_slots": 0,
+            "scheduled_count": 54,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.22,
+            "max_delay_minutes": 75,
+            "objective": 1488.4
+          },
+          "optimized": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 1373,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 79.35,
+            "overbooked_slots": 0,
+            "scheduled_count": 54,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.22,
+            "max_delay_minutes": 75,
+            "objective": 1488.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.065,
+          "simulated_wait_after": 0.065,
+          "solve_time_ms": 29,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-08",
+          "appointments": 28,
+          "utilisation_pct": 8.7,
+          "baseline": {
+            "total_delay_minutes": 60,
+            "total_idle_minutes": 672,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 33.51,
+            "overbooked_slots": 0,
+            "scheduled_count": 28,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 2.14,
+            "max_delay_minutes": 30,
+            "objective": 597.6
+          },
+          "optimized": {
+            "total_delay_minutes": 60,
+            "total_idle_minutes": 672,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 33.51,
+            "overbooked_slots": 0,
+            "scheduled_count": 28,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 2.14,
+            "max_delay_minutes": 30,
+            "objective": 597.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.007,
+          "simulated_wait_after": 0.007,
+          "solve_time_ms": 15,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-09",
+          "appointments": 31,
+          "utilisation_pct": 9.3,
+          "baseline": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 844,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 210.0,
+            "expected_idle_minutes": 31.01,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.74,
+            "max_delay_minutes": 90,
+            "objective": 1125.2
+          },
+          "optimized": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 844,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 210.0,
+            "expected_idle_minutes": 31.01,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.74,
+            "max_delay_minutes": 90,
+            "objective": 1125.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.024,
+          "simulated_wait_after": 0.024,
+          "solve_time_ms": 16,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-10",
+          "appointments": 33,
+          "utilisation_pct": 10.3,
+          "baseline": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 939,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 49.87,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.64,
+            "max_delay_minutes": 90,
+            "objective": 1036.2
+          },
+          "optimized": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 939,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 49.87,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.64,
+            "max_delay_minutes": 90,
+            "objective": 1036.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.04,
+          "simulated_wait_after": 0.045,
+          "solve_time_ms": 21,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-13",
+          "appointments": 43,
+          "utilisation_pct": 11.4,
+          "baseline": {
+            "total_delay_minutes": 150,
+            "total_idle_minutes": 1044,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 66.32,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.49,
+            "max_delay_minutes": 60,
+            "objective": 1015.2
+          },
+          "optimized": {
+            "total_delay_minutes": 150,
+            "total_idle_minutes": 1044,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 66.32,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.49,
+            "max_delay_minutes": 60,
+            "objective": 1015.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.073,
+          "simulated_wait_after": 0.073,
+          "solve_time_ms": 19,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-14",
+          "appointments": 31,
+          "utilisation_pct": 10.7,
+          "baseline": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 629,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 37.6,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.1,
+            "max_delay_minutes": 75,
+            "objective": 878.2
+          },
+          "optimized": {
+            "total_delay_minutes": 375,
+            "total_idle_minutes": 629,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 37.6,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.1,
+            "max_delay_minutes": 90,
+            "objective": 878.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.02,
+          "simulated_wait_after": 0.02,
+          "solve_time_ms": 32,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-15",
+          "appointments": 43,
+          "utilisation_pct": 13.2,
+          "baseline": {
+            "total_delay_minutes": 525,
+            "total_idle_minutes": 848,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 360.0,
+            "expected_idle_minutes": 57.25,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 12.21,
+            "max_delay_minutes": 75,
+            "objective": 1563.4
+          },
+          "optimized": {
+            "total_delay_minutes": 585,
+            "total_idle_minutes": 837,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 300.0,
+            "expected_idle_minutes": 57.25,
+            "overbooked_slots": 0,
+            "scheduled_count": 43,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 13.6,
+            "max_delay_minutes": 90,
+            "objective": 1554.6
+          },
+          "improvement": {
+            "delay_pct": -11.43,
+            "idle_pct": 1.3,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.56,
+            "mean_delay_pct": -11.43
+          },
+          "simulated_wait_before": 0.06,
+          "simulated_wait_after": 0.095,
+          "solve_time_ms": 39,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-16",
+          "appointments": 31,
+          "utilisation_pct": 10.0,
+          "baseline": {
+            "total_delay_minutes": 330,
+            "total_idle_minutes": 693,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 28.58,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.65,
+            "max_delay_minutes": 75,
+            "objective": 884.4
+          },
+          "optimized": {
+            "total_delay_minutes": 330,
+            "total_idle_minutes": 693,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 28.58,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.65,
+            "max_delay_minutes": 75,
+            "objective": 884.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.018,
+          "simulated_wait_after": 0.018,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-17",
+          "appointments": 33,
+          "utilisation_pct": 9.3,
+          "baseline": {
+            "total_delay_minutes": 270,
+            "total_idle_minutes": 748,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 255.0,
+            "expected_idle_minutes": 46.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.18,
+            "max_delay_minutes": 60,
+            "objective": 1123.4
+          },
+          "optimized": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 751,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 150.0,
+            "expected_idle_minutes": 46.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 33,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.64,
+            "max_delay_minutes": 60,
+            "objective": 1035.8
+          },
+          "improvement": {
+            "delay_pct": -5.56,
+            "idle_pct": -0.4,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.0,
+            "objective_pct": 7.8,
+            "mean_delay_pct": -5.56
+          },
+          "simulated_wait_before": 0.006,
+          "simulated_wait_after": 0.024,
+          "solve_time_ms": 33,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-20",
+          "appointments": 46,
+          "utilisation_pct": 12.6,
+          "baseline": {
+            "total_delay_minutes": 510,
+            "total_idle_minutes": 1450,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 330.0,
+            "expected_idle_minutes": 80.01,
+            "overbooked_slots": 0,
+            "scheduled_count": 46,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 11.09,
+            "max_delay_minutes": 90,
+            "objective": 2000.0
+          },
+          "optimized": {
+            "total_delay_minutes": 510,
+            "total_idle_minutes": 1442,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 240.0,
+            "expected_idle_minutes": 80.04,
+            "overbooked_slots": 0,
+            "scheduled_count": 46,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 11.09,
+            "max_delay_minutes": 120,
+            "objective": 1903.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.55,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.04,
+            "objective_pct": 4.82,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.027,
+          "simulated_wait_after": 0.044,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-21",
+          "appointments": 32,
+          "utilisation_pct": 9.0,
+          "baseline": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 858,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 29.99,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.56,
+            "max_delay_minutes": 75,
+            "objective": 896.4
+          },
+          "optimized": {
+            "total_delay_minutes": 210,
+            "total_idle_minutes": 858,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 29.99,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.56,
+            "max_delay_minutes": 75,
+            "objective": 896.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.021,
+          "simulated_wait_after": 0.021,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-22",
+          "appointments": 37,
+          "utilisation_pct": 9.5,
+          "baseline": {
+            "total_delay_minutes": 315,
+            "total_idle_minutes": 1035,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 39.43,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.51,
+            "max_delay_minutes": 75,
+            "objective": 1233.0
+          },
+          "optimized": {
+            "total_delay_minutes": 315,
+            "total_idle_minutes": 1035,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 39.43,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.51,
+            "max_delay_minutes": 75,
+            "objective": 1233.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.013,
+          "simulated_wait_after": 0.013,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-24",
+          "appointments": 38,
+          "utilisation_pct": 11.0,
+          "baseline": {
+            "total_delay_minutes": 60,
+            "total_idle_minutes": 1091,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 65.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 1.58,
+            "max_delay_minutes": 60,
+            "objective": 932.8
+          },
+          "optimized": {
+            "total_delay_minutes": 60,
+            "total_idle_minutes": 1091,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 65.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 38,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 1.58,
+            "max_delay_minutes": 60,
+            "objective": 932.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.058,
+          "simulated_wait_after": 0.058,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-27",
+          "appointments": 49,
+          "utilisation_pct": 14.8,
+          "baseline": {
+            "total_delay_minutes": 405,
+            "total_idle_minutes": 1086,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 81.07,
+            "overbooked_slots": 0,
+            "scheduled_count": 49,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.27,
+            "max_delay_minutes": 75,
+            "objective": 1393.8
+          },
+          "optimized": {
+            "total_delay_minutes": 405,
+            "total_idle_minutes": 1079,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 30.0,
+            "expected_idle_minutes": 83.03,
+            "overbooked_slots": 0,
+            "scheduled_count": 49,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.27,
+            "max_delay_minutes": 120,
+            "objective": 1298.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.64,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -2.42,
+            "objective_pct": 6.86,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.05,
+          "simulated_wait_after": 0.061,
+          "solve_time_ms": 27,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-28",
+          "appointments": 25,
+          "utilisation_pct": 8.3,
+          "baseline": {
+            "total_delay_minutes": 135,
+            "total_idle_minutes": 850,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 21.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 25,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.4,
+            "max_delay_minutes": 60,
+            "objective": 815.0
+          },
+          "optimized": {
+            "total_delay_minutes": 135,
+            "total_idle_minutes": 850,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 21.75,
+            "overbooked_slots": 0,
+            "scheduled_count": 25,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.4,
+            "max_delay_minutes": 60,
+            "objective": 815.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.001,
+          "simulated_wait_after": 0.001,
+          "solve_time_ms": 12,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-29",
+          "appointments": 37,
+          "utilisation_pct": 9.3,
+          "baseline": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 874,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 40.9,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.32,
+            "max_delay_minutes": 90,
+            "objective": 1134.2
+          },
+          "optimized": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 874,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 40.9,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.32,
+            "max_delay_minutes": 90,
+            "objective": 1134.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.017,
+          "simulated_wait_after": 0.017,
+          "solve_time_ms": 20,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-07-31",
+          "appointments": 27,
+          "utilisation_pct": 7.7,
+          "baseline": {
+            "total_delay_minutes": 180,
+            "total_idle_minutes": 511,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 27.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 27,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.67,
+            "max_delay_minutes": 75,
+            "objective": 708.8
+          },
+          "optimized": {
+            "total_delay_minutes": 180,
+            "total_idle_minutes": 511,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 27.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 27,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.67,
+            "max_delay_minutes": 75,
+            "objective": 708.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.144,
+          "simulated_wait_after": 0.144,
+          "solve_time_ms": 15,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-03",
+          "appointments": 51,
+          "utilisation_pct": 13.8,
+          "baseline": {
+            "total_delay_minutes": 495,
+            "total_idle_minutes": 1485,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 600.0,
+            "expected_idle_minutes": 87.71,
+            "overbooked_slots": 0,
+            "scheduled_count": 51,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.71,
+            "max_delay_minutes": 90,
+            "objective": 2283.0
+          },
+          "optimized": {
+            "total_delay_minutes": 495,
+            "total_idle_minutes": 1484,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 600.0,
+            "expected_idle_minutes": 87.94,
+            "overbooked_slots": 0,
+            "scheduled_count": 51,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.71,
+            "max_delay_minutes": 90,
+            "objective": 2282.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.07,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.26,
+            "objective_pct": 0.04,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.029,
+          "simulated_wait_after": 0.029,
+          "solve_time_ms": 29,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-04",
+          "appointments": 35,
+          "utilisation_pct": 11.4,
+          "baseline": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 1147,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 36.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 35,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.14,
+            "max_delay_minutes": 60,
+            "objective": 1292.6
+          },
+          "optimized": {
+            "total_delay_minutes": 285,
+            "total_idle_minutes": 1147,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 36.79,
+            "overbooked_slots": 0,
+            "scheduled_count": 35,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.14,
+            "max_delay_minutes": 60,
+            "objective": 1292.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.029,
+          "simulated_wait_after": 0.029,
+          "solve_time_ms": 16,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-05",
+          "appointments": 31,
+          "utilisation_pct": 8.7,
+          "baseline": {
+            "total_delay_minutes": 105,
+            "total_idle_minutes": 515,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 26.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.39,
+            "max_delay_minutes": 60,
+            "objective": 577.0
+          },
+          "optimized": {
+            "total_delay_minutes": 105,
+            "total_idle_minutes": 515,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 26.46,
+            "overbooked_slots": 0,
+            "scheduled_count": 31,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 3.39,
+            "max_delay_minutes": 60,
+            "objective": 577.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.035,
+          "simulated_wait_after": 0.035,
+          "solve_time_ms": 18,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-06",
+          "appointments": 37,
+          "utilisation_pct": 10.8,
+          "baseline": {
+            "total_delay_minutes": 255,
+            "total_idle_minutes": 1230,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 270.0,
+            "expected_idle_minutes": 36.04,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.89,
+            "max_delay_minutes": 75,
+            "objective": 1509.0
+          },
+          "optimized": {
+            "total_delay_minutes": 255,
+            "total_idle_minutes": 1230,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 270.0,
+            "expected_idle_minutes": 36.04,
+            "overbooked_slots": 0,
+            "scheduled_count": 37,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 6.89,
+            "max_delay_minutes": 75,
+            "objective": 1509.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.016,
+          "simulated_wait_after": 0.016,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-07",
+          "appointments": 29,
+          "utilisation_pct": 8.4,
+          "baseline": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 673,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 360.0,
+            "expected_idle_minutes": 24.69,
+            "overbooked_slots": 0,
+            "scheduled_count": 29,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.28,
+            "max_delay_minutes": 75,
+            "objective": 1138.4
+          },
+          "optimized": {
+            "total_delay_minutes": 240,
+            "total_idle_minutes": 673,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 360.0,
+            "expected_idle_minutes": 24.69,
+            "overbooked_slots": 0,
+            "scheduled_count": 29,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.28,
+            "max_delay_minutes": 75,
+            "objective": 1138.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.066,
+          "simulated_wait_after": 0.066,
+          "solve_time_ms": 13,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-10",
+          "appointments": 50,
+          "utilisation_pct": 13.5,
+          "baseline": {
+            "total_delay_minutes": 495,
+            "total_idle_minutes": 1155,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 555.0,
+            "expected_idle_minutes": 82.34,
+            "overbooked_slots": 0,
+            "scheduled_count": 50,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.9,
+            "max_delay_minutes": 75,
+            "objective": 1974.0
+          },
+          "optimized": {
+            "total_delay_minutes": 495,
+            "total_idle_minutes": 1155,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 345.0,
+            "expected_idle_minutes": 81.47,
+            "overbooked_slots": 0,
+            "scheduled_count": 50,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 9.9,
+            "max_delay_minutes": 90,
+            "objective": 1764.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 1.06,
+            "objective_pct": 10.64,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.042,
+          "simulated_wait_after": 0.044,
+          "solve_time_ms": 24,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-11",
+          "appointments": 39,
+          "utilisation_pct": 10.3,
+          "baseline": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 689,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 39.68,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.85,
+            "max_delay_minutes": 75,
+            "objective": 896.2
+          },
+          "optimized": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 685,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 39.9,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.85,
+            "max_delay_minutes": 105,
+            "objective": 893.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.58,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.54,
+            "objective_pct": 0.36,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.006,
+          "simulated_wait_after": 0.008,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-12",
+          "appointments": 30,
+          "utilisation_pct": 9.1,
+          "baseline": {
+            "total_delay_minutes": 0,
+            "total_idle_minutes": 1261,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 36.18,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 0.0,
+            "max_delay_minutes": 0,
+            "objective": 1008.8
+          },
+          "optimized": {
+            "total_delay_minutes": 0,
+            "total_idle_minutes": 1261,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 36.18,
+            "overbooked_slots": 0,
+            "scheduled_count": 30,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 0.0,
+            "max_delay_minutes": 0,
+            "objective": 1008.8
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.001,
+          "simulated_wait_after": 0.001,
+          "solve_time_ms": 15,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-13",
+          "appointments": 44,
+          "utilisation_pct": 12.3,
+          "baseline": {
+            "total_delay_minutes": 600,
+            "total_idle_minutes": 1127,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 63.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 44,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 13.64,
+            "max_delay_minutes": 90,
+            "objective": 1501.6
+          },
+          "optimized": {
+            "total_delay_minutes": 600,
+            "total_idle_minutes": 1127,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 0.0,
+            "expected_idle_minutes": 63.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 44,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 13.64,
+            "max_delay_minutes": 90,
+            "objective": 1501.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.119,
+          "simulated_wait_after": 0.119,
+          "solve_time_ms": 26,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-14",
+          "appointments": 32,
+          "utilisation_pct": 8.7,
+          "baseline": {
+            "total_delay_minutes": 165,
+            "total_idle_minutes": 1153,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 150.0,
+            "expected_idle_minutes": 33.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.16,
+            "max_delay_minutes": 60,
+            "objective": 1237.4
+          },
+          "optimized": {
+            "total_delay_minutes": 165,
+            "total_idle_minutes": 1153,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 150.0,
+            "expected_idle_minutes": 33.78,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 5.16,
+            "max_delay_minutes": 60,
+            "objective": 1237.4
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.0,
+          "simulated_wait_after": 0.0,
+          "solve_time_ms": 17,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-17",
+          "appointments": 42,
+          "utilisation_pct": 12.1,
+          "baseline": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 1210,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 74.85,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.21,
+            "max_delay_minutes": 90,
+            "objective": 1373.0
+          },
+          "optimized": {
+            "total_delay_minutes": 345,
+            "total_idle_minutes": 1210,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 60.0,
+            "expected_idle_minutes": 74.85,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 8.21,
+            "max_delay_minutes": 90,
+            "objective": 1373.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.09,
+          "simulated_wait_after": 0.09,
+          "solve_time_ms": 23,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-18",
+          "appointments": 32,
+          "utilisation_pct": 9.0,
+          "baseline": {
+            "total_delay_minutes": 525,
+            "total_idle_minutes": 819,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 615.0,
+            "expected_idle_minutes": 25.53,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 16.41,
+            "max_delay_minutes": 75,
+            "objective": 1795.2
+          },
+          "optimized": {
+            "total_delay_minutes": 525,
+            "total_idle_minutes": 819,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 615.0,
+            "expected_idle_minutes": 27.84,
+            "overbooked_slots": 0,
+            "scheduled_count": 32,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 16.41,
+            "max_delay_minutes": 90,
+            "objective": 1795.2
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -9.04,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.022,
+          "simulated_wait_after": 0.022,
+          "solve_time_ms": 20,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-19",
+          "appointments": 42,
+          "utilisation_pct": 12.5,
+          "baseline": {
+            "total_delay_minutes": 570,
+            "total_idle_minutes": 840,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 555.0,
+            "expected_idle_minutes": 43.33,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 13.57,
+            "max_delay_minutes": 75,
+            "objective": 1797.0
+          },
+          "optimized": {
+            "total_delay_minutes": 570,
+            "total_idle_minutes": 840,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 495.0,
+            "expected_idle_minutes": 42.27,
+            "overbooked_slots": 0,
+            "scheduled_count": 42,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 13.57,
+            "max_delay_minutes": 90,
+            "objective": 1737.0
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 2.44,
+            "objective_pct": 3.34,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.042,
+          "simulated_wait_after": 0.042,
+          "solve_time_ms": 27,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-20",
+          "appointments": 39,
+          "utilisation_pct": 11.7,
+          "baseline": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 973,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 66.35,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.0,
+            "max_delay_minutes": 90,
+            "objective": 1288.4
+          },
+          "optimized": {
+            "total_delay_minutes": 390,
+            "total_idle_minutes": 972,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 120.0,
+            "expected_idle_minutes": 66.63,
+            "overbooked_slots": 0,
+            "scheduled_count": 39,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 10.0,
+            "max_delay_minutes": 90,
+            "objective": 1287.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.1,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": -0.43,
+            "objective_pct": 0.06,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.103,
+          "simulated_wait_after": 0.11,
+          "solve_time_ms": 22,
+          "status": "OPTIMAL"
+        },
+        {
+          "date": "2026-08-21",
+          "appointments": 41,
+          "utilisation_pct": 10.6,
+          "baseline": {
+            "total_delay_minutes": 300,
+            "total_idle_minutes": 1137,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 58.57,
+            "overbooked_slots": 0,
+            "scheduled_count": 41,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.32,
+            "max_delay_minutes": 75,
+            "objective": 1299.6
+          },
+          "optimized": {
+            "total_delay_minutes": 300,
+            "total_idle_minutes": 1137,
+            "total_overtime_minutes": 0,
+            "urgency_penalty": 90.0,
+            "expected_idle_minutes": 58.57,
+            "overbooked_slots": 0,
+            "scheduled_count": 41,
+            "unscheduled_count": 0,
+            "mean_delay_minutes": 7.32,
+            "max_delay_minutes": 75,
+            "objective": 1299.6
+          },
+          "improvement": {
+            "delay_pct": 0.0,
+            "idle_pct": 0.0,
+            "overtime_pct": 0.0,
+            "expected_idle_pct": 0.0,
+            "objective_pct": 0.0,
+            "mean_delay_pct": 0.0
+          },
+          "simulated_wait_before": 0.024,
+          "simulated_wait_after": 0.024,
+          "solve_time_ms": 22,
+          "status": "OPTIMAL"
+        }
+      ]
+    }
+  },
+  "reproducibility": {
+    "cpsat_workers": 1,
+    "cpsat_seed": 42,
+    "simulation_seed": 42,
+    "simulation_runs": 80,
+    "note": "both schedulers run under the same slack policy in each comparison"
+  }
+}

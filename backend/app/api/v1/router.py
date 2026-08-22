@@ -4,7 +4,16 @@ from __future__ import annotations
 
 from fastapi import APIRouter
 
-from app.api.v1 import appointments, auth, dashboard, directory, health, predictions, tasks
+from app.api.v1 import (
+    appointments,
+    auth,
+    dashboard,
+    directory,
+    health,
+    predictions,
+    scheduling,
+    tasks,
+)
 
 api_router = APIRouter()
 api_router.include_router(health.router)
@@ -13,4 +22,5 @@ api_router.include_router(directory.router)
 api_router.include_router(appointments.router)
 api_router.include_router(dashboard.router)
 api_router.include_router(predictions.router)
+api_router.include_router(scheduling.router)
 api_router.include_router(tasks.router)

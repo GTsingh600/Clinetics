@@ -12,9 +12,10 @@ so the repo doubles as a tutorial rather than just an artifact.
 | [phase-1-database.md](./phase-1-database.md) | Normalization, the deliberate denormalization, CHECK/EXCLUDE constraints, ON DELETE, native ENUMs, generated columns, index measurement, the PL/pgSQL trigger, schema separation, synthetic data and the validation gate |
 | [phase-2-core-app.md](./phase-2-core-app.md) | Cookie vs bearer sessions, bcrypt's 72-byte limit, refresh rotation and reuse detection, CSRF, object-level authorization, the two booking races and their two different fixes, server components and cookies |
 | [phase-3-forecasting.md](./phase-3-forecasting.md) | Prediction-time leakage, rolling-origin validation, the missing-zeros trap, baselines, operating points, calibration, and shipping the simpler model when it wins |
+| [phase-4-optimizer.md](./phase-4-optimizer.md) | CP-SAT model, why breaks came free from the schema, the objective and every weight, overbooking vs the database constraint, the 0% result and what it meant, the load sweep, and the waiting-time regression the simulator caught |
 | [design-system.md](./design-system.md) | Palette, typography, tokens, component patterns |
 | [glossary.md](./glossary.md) | Every term used in the project, defined in one line |
-| _phase-4-optimizer.md_ | (next) CP-SAT model, greedy baseline, benchmark |
+| _phase-5-agent.md_ | (next) Tool schemas, tool-calling loop, grounded explanations |
 
 ## How the project fits together
 

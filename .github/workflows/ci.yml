@@ -123,6 +123,11 @@ jobs:
       - name: Train forecasting models
         run: uv run python scripts/train_models.py
 
+      - name: Optimizer benchmark
+        # A short run: enough days to catch a regression in the optimizer or the
+        # baseline, not the full sweep the committed report was produced with.
+        run: uv run python scripts/benchmark.py --days 10 --simulate-runs 20 --time-limit 5
+
       - name: Model evaluation gate
         # Rolling-origin cross-validation against the baselines each model must
         # beat. Exits non-zero if a model fails to clear its baseline, so a

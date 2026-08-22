@@ -97,6 +97,12 @@ eval: ## THE MODEL GATE: rolling-origin CV against the baselines, writes metrics
 ceiling: ## How good COULD the no-show model be? Bayes ceiling + feature ablation
 	cd backend && $(UV) run python scripts/ceiling_analysis.py
 
+# --- Optimizer -------------------------------------------------------------
+
+.PHONY: benchmark
+benchmark: ## Optimizer vs FCFS baseline, with a load sweep; writes reports
+	cd backend && $(UV) run python scripts/benchmark.py
+
 .PHONY: explain
 explain: ## EXPLAIN ANALYZE the (doctor_id, appointment_date) index, with/without
 	cd backend && $(UV) run python scripts/explain_index.py
